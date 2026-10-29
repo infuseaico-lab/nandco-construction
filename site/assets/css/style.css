@@ -813,3 +813,23 @@ main, .foot { overflow-x: clip; }
   .gfilter { gap: 6px; }
   .gfilter button { font-size: 0.8125rem; padding: 0.55em 0.95em; }
 }
+
+/* header at laptop widths: buttons never wrap; the phone shows as an icon until there's room for the number */
+.bar__phone, .bar__quote { white-space: nowrap; }
+@media (min-width: 64em) and (max-width: 79.99em) { .bar__phone span { display: none; } .bar__phone { padding: 10px; } .bar__nav a, .navdrop__btn { padding-inline: 10px; } }
+
+/* "Not sure where to start" button stays on one line */
+.card--cta .btn { white-space: nowrap; }
+
+/* promises: titles on one line; four columns only when each card is wide enough */
+.promise .h3 { font-size: 1.0625rem; }
+@media (min-width: 64em) { .promise-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 80em) { .promise-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* homepage cities: one per line on phones, and no name breaks across lines */
+.cities li { white-space: nowrap; }
+@media (max-width: 39.99em) { .cities { grid-template-columns: minmax(0, 1fr); row-gap: 0; } .cities li { min-height: 36px; } }
+
+/* homepage gallery: keep rooflines and ceilings in frame */
+.gallery .shot img { object-position: 50% 15%; }
+.gallery--six .shot:nth-child(4) img { object-position: 50% 0; }
