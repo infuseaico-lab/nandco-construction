@@ -114,7 +114,7 @@ CITIES = ["Los Angeles", "Bel Air", "Hollywood", "West Hollywood", "Beverly Hill
 
 # Timelines are typical ranges for Los Angeles projects, to be confirmed by Nandco.
 SERVICES = [
-    dict(slug="kitchen-remodeling", name="Kitchen Remodeling", project="kb", hero="hero-2", img="kitchen-pendants", img2="kitchen-galley",
+    dict(slug="kitchen-remodeling", detail="Remodeled kitchen corner with white-oak cabinets, a marble backsplash and a brass pot filler over the range", name="Kitchen Remodeling", project="kb", hero="hero-2", img="kitchen-pendants", img2="kitchen-galley",
          alt="White kitchen with an oak island under three brass globe pendants",
          line="Kitchens rebuilt around how you cook and gather: layout, cabinetry, counters, lighting and appliances.",
          intro=["A kitchen is the hardest-working room in the house and the one with the most decisions in it. We start with how you use it, then settle the layout, cabinetry, counters and appliances before demolition begins.",
@@ -123,7 +123,7 @@ SERVICES = [
          before=[("Site visit and estimate", "1 wk"), ("Design and selections", "3–5 wks"), ("Permits and ordering", "2–6 wks")],
          build=[("Demolition and rough-in", "2–3 wks"), ("Cabinets and counters", "3–5 wks"), ("Finishes and appliances", "1–2 wks")],
          total="3–5 months", result="Your new kitchen"),
-    dict(slug="bathroom-remodeling", name="Bathroom Remodeling", project="kb", hero="hero-4", img="bathroom", img2="kitchen-marble",
+    dict(slug="bathroom-remodeling", detail="Remodeled primary bathroom with a freestanding tub, a double oak vanity and a walk-in glass shower", name="Bathroom Remodeling", project="kb", hero="hero-4", img="bathroom", img2="kitchen-marble",
          alt="Remodeled bathroom with a white-oak vanity, brass fixtures and a frameless glass shower",
          line="Primary suites, guest baths and powder rooms, with the waterproofing done right under every tile.",
          intro=["What makes a bathroom last is mostly out of sight: the waterproofing, the slope of the shower floor, the ventilation. We get those right first, then build the tile, glass and fixtures you chose on top of them.",
@@ -132,7 +132,7 @@ SERVICES = [
          before=[("Site visit and estimate", "1 wk"), ("Design and selections", "2–4 wks"), ("Permits and ordering", "2–4 wks")],
          build=[("Demolition and rough-in", "1–2 wks"), ("Waterproofing and tile", "2–3 wks"), ("Fixtures and glass", "1 wk")],
          total="2–3 months", result="Your new bathroom"),
-    dict(slug="home-remodeling", name="Home Remodeling", project="home", hero="hero-1", img="living-room", img2="dining-blue",
+    dict(slug="home-remodeling", detail="Open-plan great room after a whole-home remodel, with kitchen, dining and living areas under white beams", name="Home Remodeling", project="home", hero="hero-1", img="living-room", img2="dining-blue",
          alt="Living room with a white beamed ceiling and a wood slat wall",
          line="Whole-house and multi-room remodels, from opened-up floor plans to new systems behind the walls.",
          intro=["A whole-home remodel touches everything at once: structure, plumbing, electrical, finishes and the way rooms connect. We plan it as one project with one schedule, so the kitchen, the baths and the new floor plan come together instead of in pieces.",
@@ -141,7 +141,7 @@ SERVICES = [
          before=[("Site visit and estimate", "1–2 wks"), ("Design and selections", "4–8 wks"), ("Permits and ordering", "4–12 wks")],
          build=[("Demolition and structure", "3–6 wks"), ("Systems and rough-in", "3–5 wks"), ("Finishes", "6–10 wks")],
          total="6–10 months", result="Your finished home"),
-    dict(slug="home-additions", name="Home Additions", project="adu", hero="hero-4", img="farmhouse-back", img2="farmhouse-front",
+    dict(slug="home-additions", detail="New second-story bedroom addition with a vaulted ceiling and a skylight", name="Home Additions", project="adu", hero="hero-4", img="farmhouse-back", img2="farmhouse-front",
          alt="Back of a white farmhouse with a pergola and open folding doors",
          line="More room on the lot you already own: ground-floor additions, second stories and expanded rooms.",
          intro=["An addition should look as if it was always there. That means matching the roof line, the windows and the finishes, and tying the new structure and systems into the old ones properly.",
@@ -150,7 +150,7 @@ SERVICES = [
          before=[("Site visit and feasibility", "1–2 wks"), ("Design and engineering", "6–10 wks"), ("Permits and ordering", "8–16 wks")],
          build=[("Foundation and framing", "4–8 wks"), ("Systems and rough-in", "4–6 wks"), ("Finishes and tie-in", "6–10 wks")],
          total="9–14 months", result="Your added space"),
-    dict(slug="adus", name="Accessory Dwelling Units (ADUs)", project="adu", hero="hero-3", img="adu", img2="farmhouse-back",
+    dict(slug="adus", detail="Interior of a backyard ADU with an oak kitchenette, a small dining table and a glass door to the garden", name="Accessory Dwelling Units (ADUs)", project="adu", hero="hero-3", img="adu", img2="farmhouse-back",
          alt="Detached backyard ADU with white stucco, oak siding and black-framed windows",
          line="Detached ADUs, garage conversions and junior ADUs for family, guests or rental income.",
          intro=["An ADU is a small house with all the requirements of a big one: its own foundation, utilities, kitchen and bath, and its own permit. We review your lot first, then design and build the unit that fits it.",
@@ -159,7 +159,7 @@ SERVICES = [
          before=[("Site visit and feasibility", "1–2 wks"), ("Design and selections", "4–8 wks"), ("Permits and ordering", "8–16 wks")],
          build=[("Foundation and utilities", "3–5 wks"), ("Framing and roof", "4–6 wks"), ("Systems and finishes", "8–12 wks")],
          total="8–12 months", result="Your finished ADU"),
-    dict(slug="home-restoration", name="Restoration & Fire Rebuilds", project="home", hero="hero-1", img="dining-blue", img2="house-dusk",
+    dict(slug="home-restoration", detail="Restored 1920s living room with the original arched doorway, refinished trim and a tiled fireplace", name="Restoration & Fire Rebuilds", project="home", hero="hero-1", img="dining-blue", img2="house-dusk",
          alt="Open kitchen and dining room with blue cabinetry and wood floors",
          line="Fire and damage rebuilds coordinated with your insurance adjuster, and older homes brought back with their character kept.",
          intro=["After a fire or major damage, the work starts before the build: assessing what can be saved, documenting the loss, and working with your insurance adjuster on scope. We take on that coordination so you are not managing it alone.",
@@ -168,7 +168,7 @@ SERVICES = [
          before=[("Assessment and adjuster meeting", "1–2 wks"), ("Scope, design and selections", "3–6 wks"), ("Permits and ordering", "2–8 wks")],
          build=[("Demolition and structure", "4–8 wks"), ("Systems and rough-in", "3–6 wks"), ("Finishes", "4–8 wks")],
          total="5–9 months", result="Back home"),
-    dict(slug="pool-house", name="Pool House Design & Construction", project="adu", hero="hero-3", img="pool-house", img2="farmhouse-back",
+    dict(slug="pool-house", detail="Pool house lounge with a built-in bar and folding glass doors open to the pool", name="Pool House Design & Construction", project="adu", hero="hero-3", img="pool-house", img2="farmhouse-back",
          alt="Modern black house with a pool, spa and lounge chairs on a paver-and-turf deck",
          line="Pool houses and cabanas with changing rooms, baths, outdoor kitchens and covered lounge space.",
          intro=["A pool house lives between indoors and out. We design it to match the main house, then build the plumbing, gas and electrical it needs for a bath, a kitchen or a bar.",
@@ -177,7 +177,7 @@ SERVICES = [
          before=[("Site visit and estimate", "1–2 wks"), ("Design and selections", "4–6 wks"), ("Permits and ordering", "6–12 wks")],
          build=[("Foundation and framing", "4–6 wks"), ("Systems and rough-in", "2–4 wks"), ("Finishes", "4–6 wks")],
          total="6–9 months", result="Your pool house"),
-    dict(slug="new-home-construction", name="New Home Construction", project="new", hero="hero-2", img="farmhouse-front", img2="farmhouse-back",
+    dict(slug="new-home-construction", detail="Double-height living room in a new farmhouse with an oak staircase and tall black-framed windows", name="New Home Construction", project="new", hero="hero-2", img="farmhouse-front", img2="farmhouse-back",
          alt="White two-story modern farmhouse with a black garage door",
          line="Ground-up homes built from approved plans, with pre-construction budgeting and one team on site.",
          intro=["A new home is hundreds of decisions and dozens of trades. We bring them under one schedule and one budget, starting with pre-construction work that prices the plans before ground is broken.",
@@ -186,7 +186,7 @@ SERVICES = [
          before=[("Plan review and budgeting", "2–4 wks"), ("Engineering and selections", "8–16 wks"), ("Permits and ordering", "12–24 wks")],
          build=[("Site work and foundation", "6–10 wks"), ("Framing and roof", "8–12 wks"), ("Systems and finishes", "18–24 wks")],
          total="16–24 months", result="Your new home"),
-    dict(slug="custom-home", name="Custom Homes", project="new", hero="hero-3", img="kitchen-marble", img2="pool-house",
+    dict(slug="custom-home", detail="Custom home entry with a floating oak staircase, a limestone floor and a walnut pivot door", name="Custom Homes", project="new", hero="hero-3", img="kitchen-marble", img2="pool-house",
          alt="Inset cream cabinetry, a marble-topped walnut island and a black range",
          line="One-of-a-kind homes built with you from the first sketch, with one team responsible through move-in.",
          intro=["A custom home starts long before construction: with a budget that matches the design, and a builder at the table while the architect is still drawing. We join early so the plans you fall in love with are plans you can afford to build.",
@@ -242,8 +242,8 @@ def service_page(s):
 
   <section class="section deco deco--dots" id="included" aria-labelledby="included-title">
     <div class="wrap">
-      <article class="panel">
-        <img decoding="async" class="panel__img" src="assets/img/{s['img']}.jpg" width="1536" height="1024" alt="{s['alt']}" loading="lazy" data-reveal>
+      <article class="panel panel--even">
+        <img decoding="async" class="panel__img" src="assets/img/svc-{s['slug']}.jpg" width="1536" height="1024" alt="{s['detail']}" loading="lazy" data-reveal>
         <div class="panel__body" data-reveal>
           <span class="pill">{ico('layers')}What's Included</span>
           <h2 class="h2" id="included-title">{esc(s['name'])}, Start to Finish</h2>
