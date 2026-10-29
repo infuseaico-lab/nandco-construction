@@ -792,3 +792,24 @@ main, .foot { overflow-x: clip; }
 .cta-band__acts { display: grid; grid-template-columns: minmax(0, 1fr); }
 .cta-band__acts .btn { width: 100%; justify-content: center; }
 @media (min-width: 40em) { .cta-band__acts { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 1fr; justify-content: start; } }
+
+/* service pages: the 24 neighborhoods on one scrolling line (pauses on hover; wraps when motion is reduced) */
+.cities-line { display: flex; overflow: hidden; padding-block: var(--space-4); background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); }
+.cities-line__track { display: flex; flex: none; gap: var(--space-6); padding-right: var(--space-6); margin: 0; white-space: nowrap; }
+.cities-line__track li { display: inline-flex; align-items: center; gap: var(--space-2); font-weight: 500; }
+.cities-line .ico { width: 18px; height: 18px; color: var(--color-accent-strong); }
+@media (prefers-reduced-motion: no-preference) {
+  .cities-line__track { animation: ticker 60s linear infinite; }
+  .cities-line:hover .cities-line__track { animation-play-state: paused; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cities-line { -webkit-mask-image: none; mask-image: none; padding-inline: var(--space-5); }
+  .cities-line__track { flex: 1; flex-wrap: wrap; white-space: normal; row-gap: var(--space-3); }
+  .cities-line__track[aria-hidden] { display: none; }
+}
+
+/* gallery filters: two rows on phones */
+@media (max-width: 39.99em) {
+  .gfilter { gap: 6px; }
+  .gfilter button { font-size: 0.8125rem; padding: 0.55em 0.95em; }
+}

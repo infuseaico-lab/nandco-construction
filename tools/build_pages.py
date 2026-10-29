@@ -306,7 +306,10 @@ def service_page(s):
         <h2 class="h2" id="areas-title">Where We Work</h2>
         <p class="section__intro section__intro--line">24 neighborhoods across Los Angeles County.</p>
       </header>
-      <ul class="cities" data-reveal>{cities}</ul>
+      <div class="cities-line" role="region" aria-label="Neighborhoods we serve" data-reveal>
+        <ul class="cities-line__track">{cities}</ul>
+        <ul class="cities-line__track" aria-hidden="true">{cities}</ul>
+      </div>
     </div>
   </section>
 
