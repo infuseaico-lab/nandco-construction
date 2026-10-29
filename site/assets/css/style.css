@@ -717,3 +717,5 @@ main, .foot { overflow-x: clip; }
 /* what's included: label and title on top, the intro under them, then the photo */
 .incl__head { grid-template-columns: minmax(0, 1fr) !important; align-items: start; row-gap: var(--space-4); }
 .incl__intro { max-width: 72ch; }
+/* the intro runs the full width of the section, edge to edge above the photo */
+.incl__intro, .incl__intro p, .incl__head .section__intro { max-width: none !important; }
