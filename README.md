@@ -1,7 +1,8 @@
 # Nandco Construction website
 
 Static site in `site/`, built on the Algazy Group template (`algazy-group-full`, branch `claude/pensive-ride-pfstra`):
-`index.html`, `privacy.html`, `terms.html`, `assets/css/style.css`, `assets/js/main.js`.
+`index.html`, `privacy.html`, `terms.html`, `assets/css/style.css`, `assets/js/main.js`,
+plus the ad landing page `free-estimate.html` (`assets/css/lp.css`, `assets/js/lp.js`; noindex, not linked from the main page).
 Open `site/index.html` in a browser; no build step.
 
 Business content and source notes: `content/business-info.md`.
@@ -26,7 +27,9 @@ Each project photo is a placeholder image. Replace the file in `site/assets/img/
 | `adu.jpg` | A finished ADU (photo still needed) | ADU card |
 | `site-visit.jpg` | A site visit (photo still needed) | Process step 1 |
 | `selections.jpg` | Plans and finish samples (photo still needed) | Process step 2 |
+| `permits.jpg` | Permit set and plan check (photo still needed) | Landing page process row |
+| `rough-in.jpg` | Framing and rough-in (photo still needed) | Landing page process row |
 
-## Estimate form
+## Estimate forms
 
-With `data-endpoint` empty on `#quote-form`, sending opens an email to hello@nandcoconstruction.com with the answers filled in. To receive submissions directly, set `data-endpoint` to a form service URL (Formspree, Basin, Netlify Forms).
+With `data-endpoint` empty on `#quote-form` (main page) or `#quiz-form` / `#book-form` (landing page), sending opens an email to hello@nandcoconstruction.com with the answers filled in. To receive submissions directly, set `data-endpoint` to a form service URL (Formspree, Basin, Netlify Forms).
