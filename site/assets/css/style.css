@@ -707,3 +707,6 @@ main, .foot { overflow-x: clip; }
   .incl__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 64em) { .incl__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); } .incl { gap: var(--space-7); } }
+
+/* service pages: smaller section titles */
+.page-service .h2 { font-size: clamp(1.5rem, 1.15rem + 1.3vw, 2.25rem); }

@@ -39,7 +39,7 @@ def relink(html, up):
     return html
 
 
-def page(path, title, description, body, active=None):
+def page(path, title, description, body, active=None, body_class=""):
     up = "../" * path.count("/")
     header = relink(HEADER, up).replace('id="top"', "")
     if active:
@@ -61,7 +61,7 @@ def page(path, title, description, body, active=None):
   <link rel="stylesheet" href="{up}assets/css/style.css">
   <script>document.documentElement.classList.add('js')</script>
 </head>
-<body id="top">
+<body id="top"{f' class="{body_class}"' if body_class else ""}>
 
 {SPRITE}
 
@@ -300,7 +300,7 @@ def service_page(s):
 {cta_band(s['project'])}
 """
     page(f"services/{s['slug']}.html", f"{esc(s['name'])} in Los Angeles | Nandco Construction",
-         f"{s['line']} Serving 24 Los Angeles neighborhoods. CA Lic. 1044615.", body, active=s["slug"])
+         f"{s['line']} Serving 24 Los Angeles neighborhoods. CA Lic. 1044615.", body, active=s["slug"], body_class="page-service")
 
 
 def estimate_page():
