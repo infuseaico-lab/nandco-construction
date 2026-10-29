@@ -787,3 +787,8 @@ main, .foot { overflow-x: clip; }
 .js .deco:not(.is-near)::before, .js .deco:not(.is-near)::after { background-image: none !important; }
 .js .card--cta-photo:not(.is-near) { background-image: none !important; }
 .js .signature:not(.is-near) { font-family: "Brush Script MT", cursive !important; }
+
+/* call-to-action band buttons: full width and stacked on phones, equal widths side by side above */
+.cta-band__acts { display: grid; grid-template-columns: minmax(0, 1fr); }
+.cta-band__acts .btn { width: 100%; justify-content: center; }
+@media (min-width: 40em) { .cta-band__acts { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 1fr; justify-content: start; } }
