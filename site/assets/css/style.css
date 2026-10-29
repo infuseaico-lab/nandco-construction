@@ -511,3 +511,47 @@ main, .foot { overflow-x: clip; }
 .quote-card figcaption span { font-size: var(--text-sm); color: var(--color-muted-foreground); }
 @media (min-width: 40em) { .quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 64em) { .quotes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); } }
+
+/* team: one row per person, portrait and words side by side, Collin mirrored */
+.people { display: grid; gap: var(--space-7); }
+.person { display: grid; gap: var(--space-5); align-items: center; }
+.person__img { width: 100%; max-width: 420px; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 25%; border-radius: var(--radius-lg); }
+.person__body { display: grid; gap: var(--space-3); min-width: 0; }
+.person__role { color: var(--color-muted-foreground); font-weight: 500; }
+.person__body p:not(.person__role) { max-width: 62ch; }
+.cards--roles { margin-top: var(--space-7); }
+@media (min-width: 48em) {
+  .person { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-7); }
+  .person__img { max-width: none; }
+  .person--flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+  .person--flip .person__img { grid-column: 2; grid-row: 1; }
+  .person--flip .person__body { grid-column: 1; grid-row: 1; }
+}
+@media (min-width: 64em) { .people { gap: var(--space-8); } }
+/* the project team: the team photo on top, the four roles on a dark band beneath it */
+.crew { margin-top: var(--space-8); overflow: hidden; border-radius: var(--radius-lg); background: var(--color-ink); color: var(--color-on-ink); }
+.crew__photo { position: relative; margin: 0; }
+.crew__photo img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 35%; }
+.crew__photo figcaption { position: absolute; left: var(--space-5); bottom: var(--space-4); padding: 6px 12px; border-radius: 999px; background: rgb(24 24 24 / 0.72); color: var(--color-on-ink); font-size: var(--text-sm); }
+.crew__body { display: grid; gap: var(--space-6); padding: var(--space-6) var(--space-5); }
+.crew__head { display: grid; gap: var(--space-3); align-content: start; justify-items: start; }
+.crew__title { font-family: var(--font-display); font-size: var(--text-h2); font-weight: 500; line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
+.crew__head p { color: var(--color-on-ink-muted); }
+.crew__head .btn { margin-top: var(--space-2); }
+.crew__roles { display: grid; gap: var(--space-5); }
+.crew__roles div { display: grid; gap: var(--space-1); padding-top: var(--space-4); border-top: 1px solid rgb(250 247 238 / 0.16); }
+.crew__roles dt { display: flex; align-items: center; gap: var(--space-2); font-weight: 600; font-size: var(--text-lg); }
+.crew__roles dt .ico { color: var(--color-accent); }
+.crew__roles dd { color: var(--color-on-ink-muted); }
+.crew :focus-visible { outline-color: var(--color-on-ink); }
+@media (min-width: 48em) {
+  .crew__photo img { aspect-ratio: 21 / 9; }
+  .crew__roles { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-6); }
+  .crew__body { padding: var(--space-7); }
+}
+@media (min-width: 64em) {
+  .crew__body { grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr); column-gap: var(--space-8); }
+}
+
+/* the estimate panel shows the whole team photo at its own proportions, nothing cropped */
+.quote__img { aspect-ratio: 875 / 520; object-position: 50% 40%; }
