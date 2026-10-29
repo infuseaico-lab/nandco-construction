@@ -712,7 +712,7 @@ main, .foot { overflow-x: clip; }
 .page-service .h2 { font-size: clamp(1.5rem, 1.15rem + 1.3vw, 2.25rem); }
 
 /* Collin signs in his own hand, a looser script than Tony's */
-.signature--collin { font-family: "Mr De Haviland", "Brush Script MT", cursive; font-size: clamp(3.25rem, 2.5rem + 2.4vw, 4.75rem); transform: rotate(-3deg); }
+.signature--collin { font-family: "Whisper", "Brush Script MT", cursive; font-size: clamp(3.5rem, 2.6rem + 2.6vw, 5rem); transform: rotate(-3deg); }
 
 /* what's included: label and title on top, the intro under them, then the photo */
 .incl__head { grid-template-columns: minmax(0, 1fr) !important; align-items: start; row-gap: var(--space-4); }
