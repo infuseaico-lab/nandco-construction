@@ -830,3 +830,7 @@ main, .foot { overflow-x: clip; }
   .foot__grid > div:nth-child(2) { grid-column: 1 / -1; }
   .foot__grid a { overflow-wrap: normal; }
 }
+
+/* homepage title: the second line in gold */
+.hero__title--home { max-width: 16em; }
+.hero__accent { display: block; color: var(--color-accent); }

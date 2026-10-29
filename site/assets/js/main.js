@@ -65,7 +65,7 @@ addEventListener('pageshow', toTop);
   if (more) more.open = true;
 })();
 
-// Hero headline: two lines at most on phones, whatever the phone's text-size setting. Some phones enlarge
+// Hero headline: two lines at most on phones (data-lines can allow more), whatever the phone's text-size setting. Some phones enlarge
 // text while the page width stays the same, so the headline is measured after it renders (and again when
 // the web font arrives or the width changes) and set to the largest size that fits in two lines.
 (() => {
@@ -77,12 +77,13 @@ addEventListener('pageshow', toTop);
   const refit = () => {
     busy = true;
     h.style.fontSize = '';
-    if (phone.matches && h.clientWidth > 120 && lines() > 2) {
+    const max = Number(h.dataset.lines) || 2;
+    if (phone.matches && h.clientWidth > 120 && lines() > max) {
       let lo = 18, hi = parseFloat(getComputedStyle(h).fontSize);
       while (hi - lo > 0.5) {
         const mid = (lo + hi) / 2;
         h.style.fontSize = `${mid}px`;
-        if (lines() <= 2) lo = mid; else hi = mid;
+        if (lines() <= max) lo = mid; else hi = mid;
       }
       h.style.fontSize = `${Math.floor(lo * 2) / 2}px`;
     }
