@@ -235,7 +235,7 @@ p { max-width: 62ch; text-wrap: pretty; }
 .run__bar { margin-top: 1.75rem; }
 .run__bar span { display: block; height: 6px; background: var(--surface); }
 .run__bar i { display: block; height: 100%; width: 20%; background: var(--ink); transform-origin: left; transition: width 120ms linear; }
-.run__row { display: flex; gap: 1rem; margin: 2.5rem var(--margin) 0; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.run__row { display: flex; gap: 1rem; margin: 2.5rem var(--margin) 0; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
 .run__row::-webkit-scrollbar { display: none; }
 .run__row:focus-visible { outline-offset: -2px; }
 .moment { flex: 0 0 78vw; display: flex; flex-direction: column; background: var(--paper); scroll-snap-align: start; }

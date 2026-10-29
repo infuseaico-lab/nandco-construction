@@ -833,3 +833,6 @@ main, .foot { overflow-x: clip; }
 /* homepage gallery: keep rooflines and ceilings in frame */
 .gallery .shot img { object-position: 50% 15%; }
 .gallery--six .shot:nth-child(4) img { object-position: 50% 0; }
+
+/* swipe strips move sideways only: no vertical wobble inside the strip on phones */
+.gallery { overflow-y: hidden; overscroll-behavior-y: auto; }
