@@ -18,12 +18,25 @@ Business content and source notes: `content/business-info.md`.
 
 ## Photos
 
-Real Nandco photos: `living-room.jpg`, `kitchen-oak.jpg`, `team.jpg`, `office-sign.jpg`, `tony-nguyen.jpg`, `collin-morgan.jpg`.
+All photos are WebP in `site/assets/img/`: `name.webp` (full size) plus `name-768.webp` for phones. To add or replace one, drop a JPG or PNG with the target name into that folder and run:
 
-AI-generated (OpenAI image model, styled on Nandco project photos) and to be replaced with real project photos before launch, keeping the same file names in `site/assets/img/`:
-`house-dusk.jpg`, `kitchen-pendants.jpg`, `pool-house.jpg`, `farmhouse-back.jpg`, `farmhouse-front.jpg`, `kitchen-galley.jpg`, `dining-blue.jpg`, `kitchen-marble.jpg`, `bathroom.jpg`, `adu.jpg`, `site-visit.jpg`, `selections.jpg`, `permits.jpg`, `rough-in.jpg`, the nine `svc-*.jpg` images used in each service page's "What's Included" section, the eight `g-*.jpg` gallery-page photos, and `cta-home.jpg` (background of the homepage "Not Sure Where to Start?" card).
+    python3 tools/images.py
 
-Plain backgrounds, no longer used by the pages: `hero-1.jpg` to `hero-4.jpg`.
+It converts the photo to both WebP sizes, deletes the original, and updates the image markup on every page. `og-image.jpg` (1200x630) is the link preview for social networks and stays JPG.
+
+Real Nandco photos: `living-room`, `kitchen-oak`, `team`, `office-sign`, `tony-nguyen`, `collin-morgan`.
+
+AI-generated (OpenAI image model, styled on Nandco project photos), to be replaced with real project photos before launch under the same names:
+`house-dusk`, `kitchen-pendants`, `pool-house`, `farmhouse-back`, `farmhouse-front`, `kitchen-galley`, `dining-blue`, `kitchen-marble`, `bathroom`, `adu`, `site-visit`, `selections`, `permits`, `rough-in`, `hero-home-exterior`, `hero-great-room`, the nine `svc-*` images used in each service page's "What's Included" section, the eight `g-*` gallery-page photos, and `cta-home` (background of the homepage "Not Sure Where to Start?" card).
+
+## Speed and SEO
+
+- Fonts are self-hosted in `site/assets/fonts/` (latin subset), so there is no request to Google Fonts before first paint.
+- Each page has a canonical URL, Open Graph and Twitter tags, and structured data: GeneralContractor and FAQPage on the homepage, Service and BreadcrumbList on service pages.
+- `site/sitemap.xml` and `site/robots.txt` assume the site lives at https://nandcoconstruction.com/. Regenerate the sitemap's dates when pages change.
+- `free-estimate.html` is the paid-ads landing page and is `noindex` on purpose.
+- `site/_headers` sets long cache times on Netlify or Cloudflare Pages. On another host, set the same rules there.
+- Decorative backgrounds and the signature fonts load only as their section nears the screen (`.is-near` in `main.js`).
 
 ## Estimate forms
 

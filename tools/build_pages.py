@@ -3,14 +3,18 @@
 Run from the repository root after editing site/index.html or the content below:
     python3 tools/build_pages.py
 """
+import json
 import re
 from pathlib import Path
+
+from images import responsive
 
 SITE = Path(__file__).resolve().parent.parent / "site"
 HOME = (SITE / "index.html").read_text()
 
 PHONE = "(213) 444-6596"
 TEL = "+12134446596"
+DOMAIN = "https://nandcoconstruction.com/"
 
 
 def between(start, end, text=HOME, include_end=True):
@@ -34,13 +38,16 @@ def relink(html, up):
     html = re.sub(r'href="#(projects|services|process|gallery|team|promises|reviews|areas|questions)"', rf'href="{up}index.html#\1"', html)
     html = re.sub(r'(src|href|srcset)="assets/', rf'\1="{up}assets/', html)
     html = html.replace(", assets/", f", {up}assets/")
-    for page in ("index.html", "estimate.html", "privacy.html", "terms.html", "services/"):
+    for page in ("index.html", "estimate.html", "gallery.html", "privacy.html", "terms.html", "services/"):
         html = html.replace(f'href="{page}', f'href="{up}{page}')
     return html
 
 
-def page(path, title, description, body, active=None, body_class=""):
+def page(path, title, description, body, active=None, body_class="", schema=None):
     up = "../" * path.count("/")
+    hero = re.search(r'<img[^>]*src="assets/img/([a-z0-9-]+)\.webp"[^>]*fetchpriority="high"', body)
+    preload = f'  <link rel="preload" as="image" href="{up}assets/img/{hero.group(1)}.webp" fetchpriority="high">\n' if hero else ""
+    schema = "".join(f'  <script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>\n' for x in (schema or []))
     header = relink(HEADER, up).replace('id="top"', "")
     if active:
         header = header.replace(f'href="{up}services/{active}.html"', f'href="{up}services/{active}.html" aria-current="page"')
@@ -55,12 +62,19 @@ def page(path, title, description, body, active=None, body_class=""):
   <link rel="icon" type="image/png" sizes="32x32" href="{up}assets/brand/icon-32.png">
   <link rel="icon" type="image/png" sizes="512x512" href="{up}assets/brand/icon-512.png">
   <link rel="apple-touch-icon" href="{up}assets/brand/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="canonical" href="{DOMAIN}{path}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nandco Construction">
+  <meta property="og:title" content="{title}">
+  <meta property="og:description" content="{description}">
+  <meta property="og:url" content="{DOMAIN}{path}">
+  <meta property="og:image" content="{DOMAIN}assets/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+{preload}  <link rel="preload" href="{up}assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{up}assets/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{up}assets/css/style.css">
   <script>document.documentElement.classList.add('js')</script>
-</head>
+{schema}</head>
 <body id="top"{f' class="{body_class}"' if body_class else ""}>
 
 {SPRITE}
@@ -83,7 +97,17 @@ def page(path, title, description, body, active=None, body_class=""):
 """
     out = SITE / path
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(html)
+    out.write_text(responsive(html))
+
+
+def crumbs_schema(*trail):
+    """BreadcrumbList for search results: (name, path) pairs after Home."""
+    items = [("Home", "")] + list(trail)
+    return {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": i, "name": n, "item": DOMAIN + u} for i, (n, u) in enumerate(items, 1)]}
+
+
+BUSINESS = {"@type": "GeneralContractor", "name": "Nandco Construction", "url": DOMAIN, "telephone": "+1-213-444-6596"}
 
 
 def ico(name, cls="ico"):
@@ -216,7 +240,7 @@ def service_page(s):
     others += [o for o in SERVICES if o["project"] != s["project"]]
     related = "".join(f"""
         <li class="card" data-reveal>
-          <img decoding="async" class="card__img" src="assets/img/{o['img']}.jpg" width="1536" height="1024" alt="{o['alt']}" loading="lazy">
+          <img decoding="async" class="card__img" src="assets/img/{o['img']}.webp" width="1536" height="1024" alt="{o['alt']}" loading="lazy">
           <div class="card__body">
             <h3 class="h3"><a class="card__link" href="services/{o['slug']}.html">{esc(o['name'])}</a></h3>
             <p>{o['line']}</p>
@@ -227,7 +251,7 @@ def service_page(s):
     body = f"""
   <section class="hero hero--page" aria-labelledby="hero-title">
     <div class="hero__media">
-      <img decoding="async" class="is-on" src="assets/img/{s['img']}.jpg" width="1536" height="1024" alt="{s['alt']}" fetchpriority="high">
+      <img decoding="async" class="is-on" src="assets/img/{s['img']}.webp" width="1536" height="1024" alt="{s['alt']}" fetchpriority="high">
     </div>
     <div class="hero__copy">
       <p class="crumbs"><a href="index.html">Home</a><span aria-hidden="true">/</span><a href="index.html#services">Services</a><span aria-hidden="true">/</span><span>{esc(s['name'])}</span></p>
@@ -251,7 +275,7 @@ def service_page(s):
           <div class="incl__intro">{''.join(f'<p>{p}</p>' for p in s['intro'])}</div>
         </header>
         <figure class="incl__photo" data-reveal>
-          <img decoding="async" src="assets/img/svc-{s['slug']}.jpg" width="1536" height="1024" alt="{s['detail']}" loading="lazy">
+          <img decoding="async" src="assets/img/svc-{s['slug']}.webp" width="1536" height="1024" alt="{s['detail']}" loading="lazy">
         </figure>
         <ul class="incl__grid">{grid}</ul>
         <p class="incl__cta" data-reveal><a class="btn btn--accent btn--lg" href="estimate.html?project={s['project']}">Get a Free Estimate {ico('arrow')}</a></p>
@@ -299,8 +323,18 @@ def service_page(s):
 
 {cta_band(s['project'])}
 """
-    page(f"services/{s['slug']}.html", f"{esc(s['name'])} in Los Angeles | Nandco Construction",
-         f"{s['line']} Serving 24 Los Angeles neighborhoods. CA Lic. 1044615.", body, active=s["slug"], body_class="page-service")
+    title = f"{esc(s['name'])} in Los Angeles | Nandco Construction"
+    if len(title) > 62:
+        title = f"{esc(s['name'])} in Los Angeles | Nandco"
+    desc = f"{s['line']} Serving 24 Los Angeles neighborhoods. CA Lic. 1044615."
+    if len(desc) > 160:
+        desc = f"{s['line']} CA Lic. 1044615."
+    page(f"services/{s['slug']}.html", title, desc, body, active=s["slug"], body_class="page-service",
+         schema=[{"@context": "https://schema.org", "@type": "Service", "name": s["name"], "serviceType": s["name"],
+                  "description": s["line"], "url": f"{DOMAIN}services/{s['slug']}.html",
+                  "image": f"{DOMAIN}assets/img/{s['img']}.webp", "provider": BUSINESS,
+                  "areaServed": [{"@type": "City", "name": c} for c in CITIES]},
+                 crumbs_schema(("Services", "#services"), (s["name"], f"services/{s['slug']}.html"))])
 
 
 def estimate_page():
@@ -311,7 +345,7 @@ def estimate_page():
     form = form.replace('<h2 class="h2" id="quote-title">Request an Estimate</h2>', '<h1 class="h2" id="quote-title">Get a Free Estimate</h1>')
     form = form.replace('<span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>Get Started</span>', '<span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>Free Estimate</span>')
     form = form.replace("We'll call back to talk it through and book a site visit.", "We'll call back to talk it through and book a free site visit.")
-    form = form.replace('src="assets/img/office-sign.jpg" width="540" height="270"', 'src="assets/img/team.jpg" width="875" height="520"')
+    form = form.replace('src="assets/img/office-sign.webp" width="540" height="270"', 'src="assets/img/team.webp" width="875" height="520"')
     form = form.replace("Request an Estimate <svg", "Get My Free Estimate <svg")
     steps = f"""
   <section class="section" id="next" aria-labelledby="next-title">
@@ -330,7 +364,8 @@ def estimate_page():
     body = "\n  " + form + "\n" + steps + "\n"
     # this page has no hero; the phone dock stays hidden
     page("estimate.html", "Get a Free Estimate | Nandco Construction",
-         f"Request a free on-site estimate from Nandco Construction. Call {PHONE} or send the form.", body)
+         f"Request a free on-site estimate from Nandco Construction. Call {PHONE} or send the form.", body,
+         schema=[crumbs_schema(("Get a Free Estimate", "estimate.html"))])
 
 
 # Gallery page: every project photo, filterable by kind of space, opening in a lightbox.
@@ -383,14 +418,14 @@ def gallery_page():
         f"""
         <figure class="gshot" data-kind="{key}" data-reveal>
           <button type="button" class="gshot__open" aria-label="Enlarge: {cap}">
-            <img decoding="async" src="assets/img/{img}.jpg" width="1536" height="1024" alt="{cap}" loading="lazy">
+            <img decoding="async" src="assets/img/{img}.webp" width="1536" height="1024" alt="{cap}" loading="lazy">
           </button>
           <figcaption>{cap}</figcaption>
         </figure>""" for key, _, items in GALLERY for img, cap in items)
     body = f"""
   <section class="hero hero--page" aria-labelledby="hero-title">
     <div class="hero__media">
-      <img decoding="async" class="is-on" src="assets/img/hero-great-room.jpg" width="1536" height="1024" alt="" fetchpriority="high">
+      <img decoding="async" class="is-on" src="assets/img/hero-great-room.webp" width="1536" height="1024" alt="" fetchpriority="high">
     </div>
     <div class="hero__copy">
       <p class="crumbs"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Gallery</span></p>
@@ -416,7 +451,7 @@ def gallery_page():
   </section>
 
   <dialog class="lightbox" data-lightbox aria-label="Photo">
-    <img src="" alt="">
+    <img alt="">
     <p class="lightbox__cap"></p>
     <button type="button" class="lightbox__btn lightbox__close" data-lb="close" aria-label="Close">{ico('close')}</button>
     <button type="button" class="lightbox__btn lightbox__prev" data-lb="-1" aria-label="Previous photo">{ico('left')}</button>
@@ -426,7 +461,8 @@ def gallery_page():
 {cta_band()}
 """
     page("gallery.html", "Project Gallery | Nandco Construction",
-         "Photos of kitchens, bathrooms, remodels, ADUs and new homes across Los Angeles by Nandco Construction.", body)
+         "Photos of kitchens, bathrooms, remodels, ADUs and new homes across Los Angeles by Nandco Construction.", body,
+         schema=[crumbs_schema(("Gallery", "gallery.html"))])
 
 
 def legal_nav():

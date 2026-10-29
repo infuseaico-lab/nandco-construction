@@ -3,6 +3,41 @@
    DM Sans. Mobile first: base rules are the phone; min-width queries add the wider layouts.
    Text may be enlarged by the phone's font setting, so nothing is forced onto one line. */
 
+/* Self-hosted fonts (latin subset): no third-party request before first paint */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("../fonts/dm-sans.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Hurricane';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/hurricane.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../fonts/outfit.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Whisper';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/whisper.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
 /* ---------- tokens ---------- */
 :root {
   /* palette: charcoal #333333, gold #DEC384, cream #FAF7EE, grey #CACACA */
@@ -339,21 +374,21 @@ main, .foot { overflow-x: clip; }
 .deco::before, .deco::after { content: ""; position: absolute; z-index: -1; pointer-events: none; }
 /* layouts: drafting grid fading out from the top right, with a barely-there kitchen photo under it */
 .deco--kitchen::before { inset: 0; background-image: linear-gradient(rgb(51 51 51 / 0.07) 1px, transparent 1px), linear-gradient(90deg, rgb(51 51 51 / 0.07) 1px, transparent 1px); background-size: 32px 32px; -webkit-mask-image: radial-gradient(ellipse 75% 65% at 100% 0%, #000, transparent 75%); mask-image: radial-gradient(ellipse 75% 65% at 100% 0%, #000, transparent 75%); }
-.deco--kitchen::after { z-index: -2; inset: 0; background: url("../img/kitchen-oak.jpg") right top / cover no-repeat; opacity: 0.16; -webkit-mask-image: linear-gradient(to bottom, #000 10%, transparent 75%); mask-image: linear-gradient(to bottom, #000 10%, transparent 75%); }
+.deco--kitchen::after { z-index: -2; inset: 0; background: url("../img/kitchen-oak-768.webp") right top / cover no-repeat; opacity: 0.16; -webkit-mask-image: linear-gradient(to bottom, #000 10%, transparent 75%); mask-image: linear-gradient(to bottom, #000 10%, transparent 75%); }
 /* services: a field of gold dots in the top corner */
 .deco--dots::before { top: 0; right: 0; width: min(420px, 70%); height: 300px; background: radial-gradient(rgb(222 195 132 / 0.85) 1.3px, transparent 1.8px) 0 0 / 20px 20px; -webkit-mask-image: radial-gradient(ellipse at 100% 0%, #000, transparent 70%); mask-image: radial-gradient(ellipse at 100% 0%, #000, transparent 70%); }
 /* process: the AG emblem as a large watermark */
 .deco--emblem::before { top: 20px; right: -90px; width: 300px; aspect-ratio: 1; background: url("../img/deco-emblem.webp") center / contain no-repeat; opacity: 0.05; }
 /* areas: a barely-there Los Angeles hillside kitchen behind the cards */
-.deco--view::before { inset: 0; background: url("../img/farmhouse-front.jpg") center / cover no-repeat; opacity: 0.16; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 75%, transparent); mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 75%, transparent); }
+.deco--view::before { inset: 0; background: url("../img/farmhouse-front-768.webp") center / cover no-repeat; opacity: 0.16; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 75%, transparent); mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 75%, transparent); }
 /* questions: a line drawing of a kitchen along the bottom */
 .deco--sketch::before { right: -24px; bottom: -8px; width: min(560px, 105%); aspect-ratio: 1100 / 573; background: url("../img/deco-elevation.webp") right bottom / contain no-repeat; opacity: 0.1; }
 /* quote: warm gold light and a fine grid on the dark ground */
 .deco--glow::before { inset: 0; background: radial-gradient(36rem 26rem at 0% 0%, rgb(222 195 132 / 0.16), transparent 70%), radial-gradient(30rem 22rem at 100% 100%, rgb(222 195 132 / 0.08), transparent 70%); }
 .deco--glow::after { inset: 0; background-image: linear-gradient(rgb(250 247 238 / 0.05) 1px, transparent 1px), linear-gradient(90deg, rgb(250 247 238 / 0.05) 1px, transparent 1px); background-size: 40px 40px; -webkit-mask-image: linear-gradient(160deg, #000, transparent 60%); mask-image: linear-gradient(160deg, #000, transparent 60%); }
 @media (min-width: 64em) {
-  .deco--kitchen::after { left: 35%; background-image: url("../img/kitchen-oak.jpg"); -webkit-mask-image: linear-gradient(to right, transparent, #000 40%), linear-gradient(to bottom, #000 30%, transparent 90%); -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent, #000 40%), linear-gradient(to bottom, #000 30%, transparent 90%); mask-composite: intersect; }
-  .deco--view::before { background-image: url("../img/farmhouse-front.jpg"); }
+  .deco--kitchen::after { left: 35%; background-image: url("../img/kitchen-oak-768.webp"); -webkit-mask-image: linear-gradient(to right, transparent, #000 40%), linear-gradient(to bottom, #000 30%, transparent 90%); -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent, #000 40%), linear-gradient(to bottom, #000 30%, transparent 90%); mask-composite: intersect; }
+  .deco--view::before { background-image: url("../img/farmhouse-front-768.webp"); }
   .deco--emblem::before { top: 50%; right: -140px; width: 560px; translate: 0 -50%; }
   .deco--sketch::before { right: auto; left: max(0px, calc((100vw - var(--max)) / 2)); width: 520px; bottom: 0; background-position: left bottom; }
 }
@@ -721,7 +756,7 @@ main, .foot { overflow-x: clip; }
 .incl__intro, .incl__intro p, .incl__head .section__intro { max-width: none !important; }
 
 /* "Not sure where to start" card: a quiet photo under a 54% black wash */
-.card--cta-photo { background: linear-gradient(rgb(0 0 0 / .54), rgb(0 0 0 / .54)), url("../img/cta-home.jpg") center / cover, var(--color-ink); }
+.card--cta-photo { background: linear-gradient(rgb(0 0 0 / .54), rgb(0 0 0 / .54)), url("../img/cta-home-768.webp") center / cover, var(--color-ink); }
 .card--cta-photo .card__body p { color: rgb(255 255 255 / .82); }
 
 /* Homepage gallery: link to the full gallery page */
@@ -746,3 +781,9 @@ main, .foot { overflow-x: clip; }
 .lightbox__close { top: -3.25rem; right: 0; }
 .lightbox__prev { left: .5rem; top: 50%; translate: 0 -50%; }
 .lightbox__next { right: .5rem; top: 50%; translate: 0 -50%; }
+
+/* Decorative backgrounds and the signature fonts wait until their section nears the screen (main.js adds .is-near),
+   so the first screen downloads only what it shows */
+.js .deco:not(.is-near)::before, .js .deco:not(.is-near)::after { background-image: none !important; }
+.js .card--cta-photo:not(.is-near) { background-image: none !important; }
+.js .signature:not(.is-near) { font-family: "Brush Script MT", cursive !important; }

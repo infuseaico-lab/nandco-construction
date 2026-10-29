@@ -11,11 +11,12 @@
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
   <meta property="og:title" content="Remodels, ADUs and Custom Homes in Los Angeles | Nandco Construction">
   <meta property="og:description" content="Book a free on-site estimate. Call (213) 444-6596.">
-  <meta property="og:image" content="assets/img/house-dusk.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/img/house-dusk.jpg" fetchpriority="high">
+  <meta property="og:image" content="https://nandcoconstruction.com/assets/img/og-image.jpg">
+  <meta property="og:url" content="https://nandcoconstruction.com/free-estimate.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="assets/img/house-dusk.webp" imagesrcset="assets/img/house-dusk-768.webp 768w, assets/img/house-dusk.webp 1536w" imagesizes="100vw" fetchpriority="high">
   <link rel="stylesheet" href="assets/css/lp.css">
   <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -43,7 +44,7 @@
 <!-- 1. Hero: one photograph, the title along the bottom edge. -->
 <section class="hero" id="top" aria-labelledby="hero-title">
   <figure class="hero__media shutter">
-    <img src="assets/img/house-dusk.jpg" width="1536" height="1024" alt="Remodeled single-story home with cedar siding and lit windows at dusk" fetchpriority="high">
+    <img src="assets/img/house-dusk.webp" srcset="assets/img/house-dusk-768.webp 768w, assets/img/house-dusk.webp 1536w" sizes="100vw" width="1536" height="1024" alt="Remodeled single-story home with cedar siding and lit windows at dusk" fetchpriority="high">
   </figure>
   <div class="hero__text">
     <h1 class="display" id="hero-title" data-rise style="--i:0">Remodels and new homes in Los Angeles</h1>
@@ -76,10 +77,10 @@
         <fieldset class="wiz__step is-on" data-step="1">
           <legend class="wiz__q">What are you planning?</legend>
           <div class="ocs ocs--4">
-          <label class="oc" style="--i:0"><input type="radio" name="layout" value="kb"><img src="assets/img/kitchen-pendants.jpg" width="1536" height="1024" alt="" loading="lazy" decoding="async"><span class="oc__body"><b>Kitchen or bath</b><span>One room, done right</span></span><span class="oc__tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span></label>
-          <label class="oc" style="--i:1"><input type="radio" name="layout" value="home"><img src="assets/img/living-room.jpg" width="1536" height="1024" alt="" loading="lazy" decoding="async"><span class="oc__body"><b>Whole home</b><span>Several rooms or the whole house</span></span><span class="oc__tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span></label>
-          <label class="oc" style="--i:2"><input type="radio" name="layout" value="adu"><img src="assets/img/farmhouse-back.jpg" width="1536" height="1024" alt="" loading="lazy" decoding="async"><span class="oc__body"><b>ADU or addition</b><span>More room on your lot</span></span><span class="oc__tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span></label>
-          <label class="oc" style="--i:3"><input type="radio" name="layout" value="new"><img src="assets/img/pool-house.jpg" width="1536" height="1024" alt="" loading="lazy" decoding="async"><span class="oc__body"><b>New or custom home</b><span>From the ground up</span></span><span class="oc__tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span></label>
+          <label class="oc" style="--i:0"><input type="radio" name="layout" value="kb"><img src="assets/img/kitchen-pendants.webp" srcset="assets/img/kitchen-pendants-768.webp 768w, assets/img/kitchen-pendants.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="" loading="lazy" decoding="async"><span class="oc__body"><b>Kitchen or bath</b><span>One room, done right</span></span><span class="oc__tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span></label>
+          <label class="oc" style="--i:1"><input type="radio" name="layout" value="home"><img src="assets/img/living-room.webp" srcset="assets/img/living-room-768.webp 768w, assets/img/living-room.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1025" alt="" loading="lazy" decoding="async"><span class="oc__body"><b>Whole home</b><span>Several rooms or the whole house</span></span><span class="oc__tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span></label>
+          <label class="oc" style="--i:2"><input type="radio" name="layout" value="adu"><img src="assets/img/farmhouse-back.webp" srcset="assets/img/farmhouse-back-768.webp 768w, assets/img/farmhouse-back.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="" loading="lazy" decoding="async"><span class="oc__body"><b>ADU or addition</b><span>More room on your lot</span></span><span class="oc__tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span></label>
+          <label class="oc" style="--i:3"><input type="radio" name="layout" value="new"><img src="assets/img/pool-house.webp" srcset="assets/img/pool-house-768.webp 768w, assets/img/pool-house.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="" loading="lazy" decoding="async"><span class="oc__body"><b>New or custom home</b><span>From the ground up</span></span><span class="oc__tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span></label>
           </div>
         </fieldset>
         <fieldset class="wiz__step" data-step="2">
@@ -100,7 +101,7 @@
         </fieldset>
       </form>
       <div class="wiz__step wiz__done" data-step="4">
-        <img class="wiz__pic" id="wiz-pic" src="assets/img/kitchen-pendants.jpg" width="1536" height="1024" alt="" loading="lazy" decoding="async">
+        <img class="wiz__pic" id="wiz-pic" src="assets/img/kitchen-pendants.webp" srcset="assets/img/kitchen-pendants-768.webp 768w, assets/img/kitchen-pendants.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="" loading="lazy" decoding="async">
         <div class="wiz__end">
           <p class="wiz__q">Your project</p>
           <dl class="wiz__sum" id="out-what" aria-live="polite">
@@ -116,7 +117,7 @@
       </div>
       <div class="wiz__step wiz__form" data-step="5">
         <div class="wiz__aside">
-          <img class="wiz__pic" id="wiz-pic2" src="assets/img/kitchen-pendants.jpg" width="1536" height="1024" alt="" loading="lazy" decoding="async">
+          <img class="wiz__pic" id="wiz-pic2" src="assets/img/kitchen-pendants.webp" srcset="assets/img/kitchen-pendants-768.webp 768w, assets/img/kitchen-pendants.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="" loading="lazy" decoding="async">
           <p class="wiz__recap"><span>Your project</span><b id="recap-what">Not chosen yet</b><button class="link-plain" type="button" id="wiz-edit">Edit answers</button></p>
         </div>
         <form class="form form--quiz" id="quiz-form" novalidate data-endpoint="" aria-labelledby="quiz-form-title">
@@ -184,7 +185,7 @@
   <div class="run__bar wrap" aria-hidden="true"><span><i id="run-fill"></i></span></div>
   <ol class="run__row" id="run-row" tabindex="0" aria-label="The project, moment by moment">
     <li class="moment">
-      <img src="assets/img/site-visit.jpg" width="1536" height="1024" alt="A Nandco project manager measuring a kitchen with the homeowners on a site visit" loading="lazy" decoding="async">
+      <img src="assets/img/site-visit.webp" srcset="assets/img/site-visit-768.webp 768w, assets/img/site-visit.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="A Nandco project manager measuring a kitchen with the homeowners on a site visit" loading="lazy" decoding="async">
       <div class="moment__body"><h3>The first visit</h3><p>We walk the property with you, measure, and look at the structure and systems.</p></div>
     </li>
     <li class="moment">
@@ -192,23 +193,23 @@
       <div class="moment__body"><h3>Drawings</h3><p>Measured plans and elevations, so you see the project before it is built.</p></div>
     </li>
     <li class="moment">
-      <img src="assets/img/selections.jpg" width="1536" height="1024" alt="Finish samples for a remodel: oak, marble, tile and brass hardware beside the plans" loading="lazy" decoding="async">
+      <img src="assets/img/selections.webp" srcset="assets/img/selections-768.webp 768w, assets/img/selections.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="Finish samples for a remodel: oak, marble, tile and brass hardware beside the plans" loading="lazy" decoding="async">
       <div class="moment__body"><h3>Selections</h3><p>Cabinets, stone, tile, fixtures and lighting, chosen side by side and ordered by our purchase coordinators.</p></div>
     </li>
     <li class="moment">
-      <img src="assets/img/permits.jpg" width="1536" height="1024" alt="Construction drawings and a permit card on a job-site table" loading="lazy" decoding="async">
+      <img src="assets/img/permits.webp" srcset="assets/img/permits-768.webp 768w, assets/img/permits.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="Construction drawings and a permit card on a job-site table" loading="lazy" decoding="async">
       <div class="moment__body"><h3>Permits</h3><p>We file with LADBS or your city and answer every plan-check comment.</p></div>
     </li>
     <li class="moment">
-      <img src="assets/img/rough-in.jpg" width="1536" height="1024" alt="A house at the rough-in stage with new framing, wiring and plumbing" loading="lazy" decoding="async">
+      <img src="assets/img/rough-in.webp" srcset="assets/img/rough-in-768.webp 768w, assets/img/rough-in.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="A house at the rough-in stage with new framing, wiring and plumbing" loading="lazy" decoding="async">
       <div class="moment__body"><h3>Structure and rough-in</h3><p>Framing, beams, new circuits, water and gas run where the plans put them.</p></div>
     </li>
     <li class="moment">
-      <img src="assets/img/kitchen-galley.jpg" width="1536" height="1024" alt="White shaker galley kitchen with herringbone tile and a pro range" loading="lazy" decoding="async">
+      <img src="assets/img/kitchen-galley.webp" srcset="assets/img/kitchen-galley-768.webp 768w, assets/img/kitchen-galley.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="White shaker galley kitchen with herringbone tile and a pro range" loading="lazy" decoding="async">
       <div class="moment__body"><h3>Finishes</h3><p>Cabinets, counters, tile, floors and paint, installed by our vetted trades.</p></div>
     </li>
     <li class="moment">
-      <img src="assets/img/house-dusk.jpg" width="1536" height="1024" alt="Remodeled single-story home with cedar siding and lit windows at dusk" loading="lazy" decoding="async">
+      <img src="assets/img/house-dusk.webp" srcset="assets/img/house-dusk-768.webp 768w, assets/img/house-dusk.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="Remodeled single-story home with cedar siding and lit windows at dusk" loading="lazy" decoding="async">
       <div class="moment__body"><h3>Final and handover</h3><p>Final inspection signed, punch list closed with you, and the house handed over clean.</p></div>
     </li>
   </ol>
@@ -250,23 +251,23 @@
     </div>
     <div class="gallery__grid">
       <figure class="shot shot--big">
-        <img src="assets/img/pool-house.jpg" width="1536" height="1024" alt="Modern black house with a pool, spa and lounge chairs on a paver-and-turf deck" loading="lazy" decoding="async">
+        <img src="assets/img/pool-house.webp" srcset="assets/img/pool-house-768.webp 768w, assets/img/pool-house.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="Modern black house with a pool, spa and lounge chairs on a paver-and-turf deck" loading="lazy" decoding="async">
         <figcaption>Modern home with pool</figcaption>
       </figure>
       <figure class="shot">
-        <img src="assets/img/kitchen-pendants.jpg" width="1536" height="1024" alt="White kitchen with an oak island under three brass globe pendants" loading="lazy" decoding="async">
+        <img src="assets/img/kitchen-pendants.webp" srcset="assets/img/kitchen-pendants-768.webp 768w, assets/img/kitchen-pendants.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="White kitchen with an oak island under three brass globe pendants" loading="lazy" decoding="async">
         <figcaption>Oak island, brass pendants</figcaption>
       </figure>
       <figure class="shot">
-        <img src="assets/img/dining-blue.jpg" width="1536" height="1024" alt="Open kitchen and dining room with blue cabinetry and wood floors" loading="lazy" decoding="async">
+        <img src="assets/img/dining-blue.webp" srcset="assets/img/dining-blue-768.webp 768w, assets/img/dining-blue.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="Open kitchen and dining room with blue cabinetry and wood floors" loading="lazy" decoding="async">
         <figcaption>Blue cabinetry, open plan</figcaption>
       </figure>
       <figure class="shot">
-        <img src="assets/img/farmhouse-front.jpg" width="1536" height="1024" alt="White two-story modern farmhouse with a black garage door" loading="lazy" decoding="async">
+        <img src="assets/img/farmhouse-front.webp" srcset="assets/img/farmhouse-front-768.webp 768w, assets/img/farmhouse-front.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="White two-story modern farmhouse with a black garage door" loading="lazy" decoding="async">
         <figcaption>New modern farmhouse</figcaption>
       </figure>
       <figure class="shot">
-        <img src="assets/img/kitchen-marble.jpg" width="1536" height="1024" alt="Inset cream cabinetry, a marble-topped walnut island and a black range" loading="lazy" decoding="async">
+        <img src="assets/img/kitchen-marble.webp" srcset="assets/img/kitchen-marble-768.webp 768w, assets/img/kitchen-marble.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="Inset cream cabinetry, a marble-topped walnut island and a black range" loading="lazy" decoding="async">
         <figcaption>Marble and walnut island</figcaption>
       </figure>
     </div>
@@ -282,23 +283,23 @@
     </div>
     <ul class="trades__cards" role="list">
       <li class="card">
-        <img src="assets/img/kitchen-oak.jpg" width="1024" height="768" alt="Oak kitchen with marble waterfall counters and a brass faucet" loading="lazy" decoding="async">
+        <img src="assets/img/kitchen-oak.webp" srcset="assets/img/kitchen-oak-768.webp 768w, assets/img/kitchen-oak.webp 1024w" sizes="(min-width: 64em) 50vw, 100vw" width="1024" height="768" alt="Oak kitchen with marble waterfall counters and a brass faucet" loading="lazy" decoding="async">
         <div class="card__body"><h3>Kitchens and bathrooms</h3><p>New layouts, custom cabinetry, stone counters, curbless showers and tile built on waterproofing done right.</p></div>
       </li>
       <li class="card">
-        <img src="assets/img/living-room.jpg" width="1536" height="1024" alt="Living room with a white beamed ceiling and a wood slat wall" loading="lazy" decoding="async">
+        <img src="assets/img/living-room.webp" srcset="assets/img/living-room-768.webp 768w, assets/img/living-room.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1025" alt="Living room with a white beamed ceiling and a wood slat wall" loading="lazy" decoding="async">
         <div class="card__body"><h3>Whole-home remodels</h3><p>Opened floor plans, new electrical, plumbing and HVAC, windows, floors and finishes, planned as one project.</p></div>
       </li>
       <li class="card">
-        <img src="assets/img/farmhouse-back.jpg" width="1536" height="1024" alt="Back of a white farmhouse with a pergola and open folding doors" loading="lazy" decoding="async">
+        <img src="assets/img/farmhouse-back.webp" srcset="assets/img/farmhouse-back-768.webp 768w, assets/img/farmhouse-back.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="Back of a white farmhouse with a pergola and open folding doors" loading="lazy" decoding="async">
         <div class="card__body"><h3>ADUs, additions and pool houses</h3><p>Detached ADUs, garage conversions, second stories and pool houses, permitted through your city.</p></div>
       </li>
       <li class="card">
-        <img src="assets/img/dining-blue.jpg" width="1536" height="1024" alt="Open kitchen and dining room with blue cabinetry and wood floors" loading="lazy" decoding="async">
+        <img src="assets/img/dining-blue.webp" srcset="assets/img/dining-blue-768.webp 768w, assets/img/dining-blue.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="Open kitchen and dining room with blue cabinetry and wood floors" loading="lazy" decoding="async">
         <div class="card__body"><h3>Fire rebuilds and restoration</h3><p>Rebuilds coordinated with your insurance adjuster, and older homes repaired with their character kept.</p></div>
       </li>
       <li class="card">
-        <img src="assets/img/farmhouse-front.jpg" width="1536" height="1024" alt="White two-story modern farmhouse with a black garage door" loading="lazy" decoding="async">
+        <img src="assets/img/farmhouse-front.webp" srcset="assets/img/farmhouse-front-768.webp 768w, assets/img/farmhouse-front.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="White two-story modern farmhouse with a black garage door" loading="lazy" decoding="async">
         <div class="card__body"><h3>New and custom homes</h3><p>Ground-up homes from approved plans, and custom homes budgeted alongside your architect.</p></div>
       </li>
     </ul>
@@ -370,7 +371,7 @@
 
 <!-- 7. Book: the request form, as one opaque card on the photograph. -->
 <section class="book" id="book" aria-labelledby="book-title">
-  <img class="book__bg" src="assets/img/farmhouse-back.jpg" width="1536" height="1024" alt="Back of a white farmhouse with a pergola and open folding doors" loading="lazy" decoding="async">
+  <img class="book__bg" src="assets/img/farmhouse-back.webp" srcset="assets/img/farmhouse-back-768.webp 768w, assets/img/farmhouse-back.webp 1536w" sizes="(min-width: 64em) 50vw, 100vw" width="1536" height="1024" alt="Back of a white farmhouse with a pergola and open folding doors" loading="lazy" decoding="async">
   <div class="book__card">
     <div class="book__intro">
       <h2 class="book__title" id="book-title">Book your free on&#8209;site estimate</h2>

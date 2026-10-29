@@ -315,8 +315,26 @@ document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new 
     if (b) b.dataset.lb === 'close' ? box.close() : show(i + +b.dataset.lb);
     else if (e.target === box) box.close();
   });
+  // swipe left/right on phones
+  let x0 = null;
+  box.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  box.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
+  });
   box.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft') show(i - 1);
     if (e.key === 'ArrowRight') show(i + 1);
   });
+})();
+
+// Decorative backgrounds and signature fonts load as their section nears the screen (see .is-near in style.css).
+(() => {
+  const els = document.querySelectorAll('.deco, .card--cta-photo, .signature');
+  if (!('IntersectionObserver' in window)) { els.forEach((el) => el.classList.add('is-near')); return; }
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add('is-near'); io.unobserve(e.target); }
+  }), { rootMargin: '600px 0px' });
+  els.forEach((el) => io.observe(el));
 })();
