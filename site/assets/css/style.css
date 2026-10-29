@@ -13,27 +13,11 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Herr Von Muellerhoff';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/herr-von-muellerhoff.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
   font-family: 'Outfit';
   font-style: normal;
   font-weight: 400 600;
   font-display: swap;
   src: url("../fonts/outfit.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Whisper';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/whisper.woff2") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
@@ -708,8 +692,6 @@ main, .foot { overflow-x: clip; }
   .cards--related > .card:first-child .card__body { padding: var(--space-5); }
 }
 
-/* the owner's handwritten sign-off under his bio */
-.signature { margin-top: var(--space-4); font-family: "Herr Von Muellerhoff", "Brush Script MT", cursive; font-size: clamp(3rem, 2.3rem + 2.2vw, 4.25rem); letter-spacing: 0.01em; font-weight: 400; line-height: 1; color: var(--color-foreground); transform: rotate(-4deg); transform-origin: left center; }
 
 /* project tabs: a black bar with white labels; the chosen tab is gold */
 .seg { background: var(--color-ink); }
@@ -746,8 +728,6 @@ main, .foot { overflow-x: clip; }
 /* service pages: smaller section titles */
 .page-service .h2 { font-size: clamp(1.5rem, 1.15rem + 1.3vw, 2.25rem); }
 
-/* Collin signs in his own hand, a looser script than Tony's */
-.signature--collin { font-family: "Whisper", "Brush Script MT", cursive; font-size: clamp(2.5rem, 2rem + 1.6vw, 3.5rem); transform: rotate(-3deg); }
 
 /* what's included: label and title on top, the intro under them, then the photo */
 .incl__head { grid-template-columns: minmax(0, 1fr) !important; align-items: start; row-gap: var(--space-4); }
@@ -782,11 +762,10 @@ main, .foot { overflow-x: clip; }
 .lightbox__prev { left: .5rem; top: 50%; translate: 0 -50%; }
 .lightbox__next { right: .5rem; top: 50%; translate: 0 -50%; }
 
-/* Decorative backgrounds and the signature fonts wait until their section nears the screen (main.js adds .is-near),
+/* Decorative backgrounds wait until their section nears the screen (main.js adds .is-near),
    so the first screen downloads only what it shows */
 .js .deco:not(.is-near)::before, .js .deco:not(.is-near)::after { background-image: none !important; }
 .js .card--cta-photo:not(.is-near) { background-image: none !important; }
-.js .signature:not(.is-near) { font-family: "Brush Script MT", cursive !important; }
 
 /* call-to-action band buttons: full width and stacked on phones, equal widths side by side above */
 .cta-band__acts { display: grid; grid-template-columns: minmax(0, 1fr); }

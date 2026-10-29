@@ -329,9 +329,9 @@ document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new 
   });
 })();
 
-// Decorative backgrounds and signature fonts load as their section nears the screen (see .is-near in style.css).
+// Decorative backgrounds load as their section nears the screen (see .is-near in style.css).
 (() => {
-  const els = document.querySelectorAll('.deco, .card--cta-photo, .signature');
+  const els = document.querySelectorAll('.deco, .card--cta-photo');
   if (!('IntersectionObserver' in window)) { els.forEach((el) => el.classList.add('is-near')); return; }
   const io = new IntersectionObserver((entries) => entries.forEach((e) => {
     if (e.isIntersecting) { e.target.classList.add('is-near'); io.unobserve(e.target); }

@@ -36,7 +36,7 @@ AI-generated (OpenAI image model, styled on Nandco project photos), to be replac
 - `site/sitemap.xml` and `site/robots.txt` assume the site lives at https://nandcoconstruction.com/. Regenerate the sitemap's dates when pages change.
 - `free-estimate.html` is the paid-ads landing page and is `noindex` on purpose.
 - `site/_headers` sets long cache times on Netlify or Cloudflare Pages. On another host, set the same rules there.
-- Decorative backgrounds and the signature fonts load only as their section nears the screen (`.is-near` in `main.js`).
+- Decorative backgrounds load only as their section nears the screen (`.is-near` in `main.js`).
 
 ## Estimate forms
 
