@@ -594,3 +594,6 @@ main, .foot { overflow-x: clip; }
 
 /* areas heading: the intro sits at the right end of the line */
 @media (min-width: 48em) { .section__head--inline .section__intro { margin-left: auto; text-align: right; } }
+
+/* job titles under the team names: bold */
+.person__role { font-weight: 700; color: var(--color-foreground); }
