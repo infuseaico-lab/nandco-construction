@@ -555,3 +555,15 @@ main, .foot { overflow-x: clip; }
 
 /* the estimate panel shows the whole team photo at its own proportions, nothing cropped */
 .quote__img { aspect-ratio: 875 / 520; object-position: 50% 40%; }
+
+/* footer: four equal columns from tablet width up */
+@media (min-width: 48em) { .foot__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.foot__grid a { overflow-wrap: anywhere; }
+
+/* areas: every city in one card, no grouping */
+.section__intro--line { max-width: none; }
+.cities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2) var(--space-5); padding: var(--space-5); background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+.cities li { display: flex; align-items: center; gap: var(--space-2); min-height: 40px; font-weight: 500; }
+.cities .ico { width: 18px; height: 18px; color: var(--color-accent-strong); }
+@media (min-width: 48em) { .cities { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: var(--space-6); } }
+@media (min-width: 64em) { .cities { grid-template-columns: repeat(4, minmax(0, 1fr)); padding: var(--space-6) var(--space-7); } }
