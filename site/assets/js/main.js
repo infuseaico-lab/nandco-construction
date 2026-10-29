@@ -1,0 +1,340 @@
+// Nandco Construction — page behaviour. Everything here enhances; the page reads fully without it.
+
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Open at the top: browsers restore the last scroll position on reload, which lands mid-page.
+// A link to a section (#quote, #areas…) still goes to that section.
+// Runs again on load and pageshow (back/forward cache), after late layout shifts could move it.
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+const toTop = () => { if (!location.hash) scrollTo({ top: 0, left: 0, behavior: 'instant' }); };
+toTop();
+addEventListener('load', toTop);
+addEventListener('pageshow', toTop);
+
+// Reading progress along the bottom of the header (the storytelling pattern's progress indicator).
+(() => {
+  const bar = document.querySelector('[data-progress]');
+  if (!bar) return;
+  let queued = false;
+  const paint = () => {
+    queued = false;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
+  };
+  addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(paint); } }, { passive: true });
+  addEventListener('resize', paint);
+  paint();
+})();
+
+// Phone menu.
+(() => {
+  const btn = document.querySelector('.bar__menu');
+  const nav = document.getElementById('site-nav');
+  if (!btn || !nav) return;
+  btn.hidden = false;
+  const icon = btn.querySelector('use');
+  const set = (open) => {
+    btn.setAttribute('aria-expanded', open);
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    icon.setAttribute('href', open ? '#i-close' : '#i-menu');
+    nav.classList.toggle('is-open', open);
+  };
+  btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
+  nav.addEventListener('click', (e) => { if (e.target.closest('a')) set(false); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && nav.classList.contains('is-open')) { set(false); btn.focus(); } });
+})();
+
+// Services dropdown: the button opens and closes the list (hover and focus also open it on wide screens).
+(() => {
+  document.querySelectorAll('.navdrop__btn').forEach((btn) => {
+    const set = (open) => btn.setAttribute('aria-expanded', String(open));
+    btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('click', (e) => { if (!btn.parentElement.contains(e.target)) set(false); });
+    btn.parentElement.addEventListener('keydown', (e) => { if (e.key === 'Escape') { set(false); btn.focus(); } });
+  });
+})();
+
+// Estimate page: a project chosen elsewhere on the site (?project=kb|home|adu|new) is filled in.
+(() => {
+  const select = document.getElementById('q-layout');
+  const project = new URLSearchParams(location.search).get('project');
+  if (!select || !project) return;
+  const names = { kb: 'Kitchen & Bath', home: 'Whole Home', adu: 'ADUs & Additions', new: 'New & Custom' };
+  if (names[project]) select.value = names[project];
+  const more = document.querySelector('[data-more]');
+  if (more) more.open = true;
+})();
+
+// Hero headline: two lines at most on phones, whatever the phone's text-size setting. Some phones enlarge
+// text while the page width stays the same, so the headline is measured after it renders (and again when
+// the web font arrives or the width changes) and set to the largest size that fits in two lines.
+(() => {
+  const h = document.querySelector('.hero__title');
+  if (!h) return;
+  const phone = matchMedia('(max-width: 47.99em)');
+  const lines = () => Math.round(h.getBoundingClientRect().height / parseFloat(getComputedStyle(h).lineHeight));
+  let lastW = -1, busy = false;
+  const refit = () => {
+    busy = true;
+    h.style.fontSize = '';
+    if (phone.matches && h.clientWidth > 120 && lines() > 2) {
+      let lo = 18, hi = parseFloat(getComputedStyle(h).fontSize);
+      while (hi - lo > 0.5) {
+        const mid = (lo + hi) / 2;
+        h.style.fontSize = `${mid}px`;
+        if (lines() <= 2) lo = mid; else hi = mid;
+      }
+      h.style.fontSize = `${Math.floor(lo * 2) / 2}px`;
+    }
+    lastW = h.clientWidth;
+    busy = false;
+  };
+  // width changes (rotation, resize) re-fit; the headline's own size changes are the fitter's doing
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(() => { if (!busy && h.clientWidth !== lastW) requestAnimationFrame(refit); }).observe(h);
+  }
+  document.fonts?.addEventListener?.('loadingdone', () => refit());
+  phone.addEventListener?.('change', refit);
+  document.fonts?.load?.(`500 ${getComputedStyle(h).fontSize} "DM Sans"`).then(refit, () => {});
+  document.fonts?.ready.then(refit);
+  refit();
+})();
+
+// Hero: crossfades through four finished projects. Paused when the tab is hidden.
+(() => {
+  const imgs = [...document.querySelectorAll('[data-fade] img')];
+  if (imgs.length < 2 || reduced) return;
+  let i = 0, timer;
+  const step = () => {
+    const next = (i + 1) % imgs.length;
+    imgs[i].classList.remove('is-on');
+    imgs[next].classList.add('is-on');
+    i = next;
+  };
+  const start = () => { clearInterval(timer); timer = setInterval(step, 6000); };
+  document.addEventListener('visibilitychange', () => (document.hidden ? clearInterval(timer) : start()));
+  // the other three pictures load once the page is idle, after everything visible
+  addEventListener('load', () => (window.requestIdleCallback || setTimeout)(() => imgs.slice(1).forEach((im) => { im.loading = 'eager'; })));
+  start();
+})();
+
+// Projects: pick the kind of project, see what it involves; the choice carries into the estimate form.
+// Without script all four panels are shown in a column.
+(() => {
+  const picker = document.querySelector('[data-picker]');
+  if (!picker) return;
+  const tabs = [...picker.querySelectorAll('[role="tab"]')];
+  const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
+  const formLayout = document.getElementById('q-layout');
+  const select = (tab, focus, chosen) => {
+    tabs.forEach((t, n) => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      panels[n].hidden = !on;
+      if (on && !reduced) { panels[n].classList.remove('is-entering'); void panels[n].offsetWidth; panels[n].classList.add('is-entering'); }
+    });
+    if (focus) tab.focus();
+    if (chosen && formLayout) formLayout.value = tab.textContent.trim();
+  };
+  tabs.forEach((t, n) => {
+    t.addEventListener('click', () => select(t, false, true));
+    t.addEventListener('keydown', (e) => {
+      const k = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+      if (k) { e.preventDefault(); select(tabs[(n + k + tabs.length) % tabs.length], true, true); }
+      if (e.key === 'Home') { e.preventDefault(); select(tabs[0], true, true); }
+      if (e.key === 'End') { e.preventDefault(); select(tabs[tabs.length - 1], true, true); }
+    });
+  });
+  picker.hidden = false;
+  select(tabs.find((t) => t.getAttribute('aria-selected') === 'true') || tabs[0]);
+})();
+
+// Gallery strip (phone and tablet): previous / next buttons and a position count, so every photo is
+// reachable without dragging.
+(() => {
+  const strip = document.querySelector('[data-gallery]');
+  const nav = document.querySelector('[data-gallery-nav]');
+  if (!strip || !nav) return;
+  const shots = [...strip.children];
+  const prev = nav.querySelector('[data-gallery-prev]');
+  const next = nav.querySelector('[data-gallery-next]');
+  const count = nav.querySelector('[data-gallery-count]');
+  const pad = () => parseFloat(getComputedStyle(strip).scrollPaddingLeft) || 0;
+  const offset = (s) => s.offsetLeft - strip.offsetLeft - pad();
+  let current = 0;
+  const show = (n) => strip.scrollTo({ left: offset(shots[Math.max(0, Math.min(shots.length - 1, n))]), behavior: reduced ? 'auto' : 'smooth' });
+  const update = () => {
+    current = shots.reduce((best, s, n) => (Math.abs(offset(s) - strip.scrollLeft) < Math.abs(offset(shots[best]) - strip.scrollLeft) ? n : best), 0);
+    count.textContent = `${current + 1} / ${shots.length}`;
+    prev.disabled = current === 0;
+    next.disabled = current === shots.length - 1;
+  };
+  prev.addEventListener('click', () => show(current - 1));
+  next.addEventListener('click', () => show(current + 1));
+  let queued = false;
+  strip.addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; update(); }); } }, { passive: true });
+  nav.hidden = false;
+  update();
+})();
+
+// Quote form: required fields marked and checked, errors next to the field, loading then a result.
+// With data-endpoint set the request is posted there (any form service that accepts a POST);
+// without one, it opens an email to the office with every answer filled in.
+(() => {
+  const form = document.getElementById('quote-form');
+  if (!form) return;
+  const status = form.querySelector('[data-status]');
+  const send = form.querySelector('[data-send]');
+  const checks = [
+    [form.name, (v) => v.trim().length > 1],
+    [form.phone, (v) => v.replace(/\D/g, '').length >= 10],
+    [form.email, (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())],
+  ];
+  const mark = (input, ok) => {
+    input.setAttribute('aria-invalid', String(!ok));
+    document.getElementById(input.getAttribute('aria-describedby')).hidden = ok;
+  };
+  checks.forEach(([input, ok]) => {
+    input.addEventListener('blur', () => { if (input.value) mark(input, ok(input.value)); });
+    input.addEventListener('input', () => { if (input.getAttribute('aria-invalid') === 'true') mark(input, ok(input.value)); });
+  });
+  const say = (text, kind) => { status.textContent = text; status.className = 'form__status' + (kind ? ` is-${kind}` : ''); };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const bad = checks.filter(([input, ok]) => { const good = ok(input.value); mark(input, good); return !good; });
+    if (bad.length) {
+      bad[0][0].focus();
+      say('Please check the highlighted field.', 'err');
+      return;
+    }
+    const data = Object.fromEntries(new FormData(form));
+    const endpoint = form.dataset.endpoint;
+    if (endpoint) {
+      send.setAttribute('aria-busy', 'true'); send.disabled = true; say('Sending…');
+      try {
+        const r = await fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+        if (!r.ok) throw new Error(r.status);
+        form.reset();
+        say(`Thank you, ${data.name.split(' ')[0]}. We'll call you at ${data.phone} soon.`, 'ok');
+      } catch {
+        say('That did not go through. Please call (213) 444-6596.', 'err');
+      } finally { send.removeAttribute('aria-busy'); send.disabled = false; }
+      return;
+    }
+    const body = [
+      'Estimate request',
+      `Name: ${data.name}`, `Phone: ${data.phone}`, `Email: ${data.email}`, `Area: ${data.area}`,
+      `Work: ${data.scope}`, `Project: ${data.layout}`, `Start: ${data.start}`, data.notes && `Notes: ${data.notes}`,
+    ].filter(Boolean).join('\n');
+    location.href = `mailto:hello@nandcoconstruction.com?subject=${encodeURIComponent(`Estimate request: ${data.name}, ${data.area}`)}&body=${encodeURIComponent(body)}`;
+    say('Your email app should open with the details ready to send. If it does not, call (213) 444-6596.', 'ok');
+  });
+})();
+
+// Phone dock: Call and Request an Estimate appear whenever the hero's own buttons are out of sight,
+// and step aside while the quote form is on screen.
+(() => {
+  const dock = document.querySelector('[data-dock]');
+  const heroActions = document.querySelector('[data-hero-actions]');
+  const quote = document.getElementById('quote');
+  if (!dock || !heroActions || !('IntersectionObserver' in window)) return;
+  let pastHero = false, atQuote = false;
+  const set = () => dock.classList.toggle('is-shown', pastHero && !atQuote);
+  dock.classList.add('is-managed');
+  // both labels on one line when they fit; otherwise Call shows only its icon
+  const btns = [...dock.querySelectorAll('.btn')];
+  const tight = () => {
+    dock.classList.remove('is-tight');
+    if (btns.some((b) => b.scrollWidth > b.clientWidth + 1)) dock.classList.add('is-tight');
+  };
+  let dockW = innerWidth;
+  addEventListener('resize', () => { if (innerWidth !== dockW) { dockW = innerWidth; tight(); } });
+  document.fonts?.ready.then(tight);
+  document.fonts?.addEventListener?.('loadingdone', tight);
+  tight();
+  new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; set(); }).observe(heroActions);
+  if (quote) new IntersectionObserver(([e]) => { atQuote = e.isIntersecting; set(); }, { rootMargin: '0px 0px -30% 0px' }).observe(quote);
+})();
+
+// Reveal once on entry, staggered within each group. Never replays, never leaves content hidden.
+(() => {
+  const targets = [...document.querySelectorAll('[data-reveal]')];
+  targets.forEach((el) => { const sibs = [...el.parentElement.children].filter((c) => c.hasAttribute('data-reveal')); el.style.setProperty('--i', Math.min(sibs.indexOf(el), 5)); });
+  if (!('IntersectionObserver' in window)) { targets.forEach((el) => el.classList.add('is-in')); return; }
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+  }, { rootMargin: '0px 0px -6% 0px', threshold: 0 });
+  targets.forEach((el) => io.observe(el));
+  addEventListener('load', () => setTimeout(() => targets.forEach((el) => {
+    const r = el.getBoundingClientRect();
+    if (r.top < innerHeight && r.bottom > 0) el.classList.add('is-in');
+  }), 2000));
+})();
+
+// Lazy pictures fade in once loaded. Skipped under reduced motion; the crossfading hero pictures manage
+// their own opacity.
+(() => {
+  if (reduced) return;
+  document.documentElement.classList.add('img-fade');
+  for (const img of document.querySelectorAll('img[loading="lazy"]')) {
+    if (img.closest('[data-fade]') || img.complete) continue;
+    img.classList.add('is-pending');
+    const done = () => { img.classList.remove('is-pending'); img.classList.add('is-loaded'); };
+    img.addEventListener('load', done, { once: true });
+    img.addEventListener('error', done, { once: true });
+  }
+})();
+
+document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
+
+// Gallery page: filter by kind of space; open photos in a lightbox with prev/next.
+(() => {
+  const grid = document.querySelector('[data-ggrid]');
+  if (!grid) return;
+  const shots = [...grid.querySelectorAll('.gshot')];
+  document.querySelectorAll('[data-filter]').forEach((btn, _, all) => btn.addEventListener('click', () => {
+    all.forEach(b => { b.classList.toggle('is-on', b === btn); b.setAttribute('aria-pressed', b === btn); });
+    shots.forEach(s => { s.hidden = btn.dataset.filter !== 'all' && s.dataset.kind !== btn.dataset.filter; });
+  }));
+  const box = document.querySelector('[data-lightbox]');
+  const img = box.querySelector('img'), cap = box.querySelector('.lightbox__cap');
+  let i = 0;
+  const show = n => {
+    const vis = shots.filter(s => !s.hidden);
+    i = (n + vis.length) % vis.length;
+    const src = vis[i].querySelector('img');
+    img.src = src.src; img.alt = src.alt; cap.textContent = src.alt;
+  };
+  shots.forEach(s => s.querySelector('.gshot__open').addEventListener('click', () => {
+    show(shots.filter(x => !x.hidden).indexOf(s)); box.showModal();
+  }));
+  box.addEventListener('click', e => {
+    const b = e.target.closest('[data-lb]');
+    if (b) b.dataset.lb === 'close' ? box.close() : show(i + +b.dataset.lb);
+    else if (e.target === box) box.close();
+  });
+  // swipe left/right on phones
+  let x0 = null;
+  box.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  box.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
+  });
+  box.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') show(i - 1);
+    if (e.key === 'ArrowRight') show(i + 1);
+  });
+})();
+
+// Decorative backgrounds and signature fonts load as their section nears the screen (see .is-near in style.css).
+(() => {
+  const els = document.querySelectorAll('.deco, .card--cta-photo, .signature');
+  if (!('IntersectionObserver' in window)) { els.forEach((el) => el.classList.add('is-near')); return; }
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add('is-near'); io.unobserve(e.target); }
+  }), { rootMargin: '600px 0px' });
+  els.forEach((el) => io.observe(el));
+})();
