@@ -71,6 +71,30 @@ At Nandco Construction, our team is the cornerstone of our success. Each member 
 
 Team photo: 8 people in black Nandco tees in front of a backlit Nandco logo on a dark wood-slat wall (`assets/reference/project-team.webp`).
 
+## What You Can Count On (differentiators)
+
+Supplied by client (screenshot of live site).
+
+- **Licensed General Contractor:** Full credentials, bonded and insured for your complete protection.
+- **Transparent Bidding:** Line-item estimates with no hidden markups, no vague allowances.
+- **Permit Management:** We handle city submissions and inspections from start to finish.
+- **Premium Subcontractors:** Our vetted trade network, not whoever picks up the phone.
+
+## Testimonials
+
+Supplied by client as a screenshot of the live site ("What homeowners say / Rebuilt with trust"), all 5 stars. Text was truncated in the screenshot; the full quotes are still needed.
+
+| Name | Location | Quote (as visible) |
+|---|---|---|
+| M. Rodriguez | Altadena, CA | After the fire we had no idea where to start. Nandco stepped in immediately, handled our adjuster directly, and never once made us feel like we were managing the process alone. W... |
+| D. Kim | Arcadia, CA | I was terrified of getting lowballed by insurance and stuck with a contractor who could not deliver. Nandco knew the supplement process inside out and the rebuil... |
+| S. Lawson | Pacific Palisades, CA | They mobilized within 72 hours of our first call. Every permit, every inspection, every contractor on site was coordinated without us having to chase anyone. That matters when... |
+| Rob Radcliffe | Radcliffe Group | Tony is simply a phenomenal person -- reliable, honest, and a true man of integrity. When he says he'll do something, it gets done. That level of follow-through and... |
+| J. Thompson | Pasadena, CA | From the first site visit to the final walkthrough, Nandco was organized, communicative, and delivered exactly what they promised. The rebuild came in on time... |
+| A. Nguyen | Torrance, CA | Collin kept us updated every single week without us having to ask. That kind of communication is what you need when you are living out of a hotel and waiting to get ba... |
+
+Implied: Nandco does fire rebuilds and insurance restoration (adjuster coordination, supplements), including Altadena (not in the Areas Served list).
+
 ## Brand / Visual Notes (from screenshots)
 
 - Logo: black (#1a1d21-ish) wordmark "NANDCO" in a geometric sans, "CONSTRUCTION" in spaced caps beneath, enclosed in a house outline.
@@ -89,4 +113,4 @@ Team photo: 8 people in black Nandco tees in front of a backlit Nandco logo on a
 
 ## Still Missing
 
-Street address / office location, hours, testimonials/reviews, project portfolio, social links, full page list (sitemap), homepage copy.
+Street address / office location, hours, full testimonial text, project portfolio, social links, full page list (sitemap), homepage copy.
