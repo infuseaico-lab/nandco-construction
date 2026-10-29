@@ -30,6 +30,8 @@ Each project photo is a placeholder image. Replace the file in `site/assets/img/
 | `permits.jpg` | Permit set and plan check (photo still needed) | Landing page process row |
 | `rough-in.jpg` | Framing and rough-in (photo still needed) | Landing page process row |
 
+Hero slideshow: `hero-1.jpg` to `hero-4.jpg` are plain backgrounds with no label, so the headline reads cleanly. Replace them with the real photos in this order: home at dusk, oak-island kitchen, house with pool, farmhouse back.
+
 ## Estimate forms
 
 With `data-endpoint` empty on `#quote-form` (main page) or `#quiz-form` / `#book-form` (landing page), sending opens an email to hello@nandcoconstruction.com with the answers filled in. To receive submissions directly, set `data-endpoint` to a form service URL (Formspree, Basin, Netlify Forms).
