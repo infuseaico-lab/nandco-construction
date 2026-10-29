@@ -41,3 +41,7 @@ AI-generated (OpenAI image model, styled on Nandco project photos), to be replac
 ## Estimate forms
 
 With `data-endpoint` empty on `#quote-form` (main page) or `#quiz-form` / `#book-form` (landing page), sending opens an email to hello@nandcoconstruction.com with the answers filled in. To receive submissions directly, set `data-endpoint` to a form service URL (Formspree, Basin, Netlify Forms).
+
+## Uploading the site
+
+Everything the site needs is in `site/`, and every link is relative, so it works at a domain root or in any folder, such as `https://infusedev.online/projects/nandco-construction/`. Upload the contents of `site/` into one folder on the server; the folder name becomes the end of the URL. `_headers`, `robots.txt` and `sitemap.xml` only take effect at the root of the real domain.
