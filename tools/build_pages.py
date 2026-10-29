@@ -222,7 +222,7 @@ def service_page(s):
             <p>{o['line']}</p>
           </div>
         </li>""" for o in others[:3])
-    checks = "".join(f"<li>{ico('check')}<span>{esc(i)}</span></li>" for i in s["included"])
+    grid = "".join(f'<li data-reveal>{ico("check")}<span>{esc(i)}</span></li>' for i in s["included"])
     cities = "".join(f"<li>{ico('pin')}{c}</li>" for c in CITIES)
     body = f"""
   <section class="hero hero--page" aria-labelledby="hero-title">
@@ -242,16 +242,20 @@ def service_page(s):
 
   <section class="section deco deco--dots" id="included" aria-labelledby="included-title">
     <div class="wrap">
-      <article class="panel panel--even">
-        <img decoding="async" class="panel__img" src="assets/img/svc-{s['slug']}.jpg" width="1536" height="1024" alt="{s['detail']}" loading="lazy" data-reveal>
-        <div class="panel__body" data-reveal>
-          <span class="pill">{ico('layers')}What's Included</span>
-          <h2 class="h2" id="included-title">{esc(s['name'])}, Start to Finish</h2>
-          {''.join(f'<p>{p}</p>' for p in s['intro'])}
-          <ul class="checks">{checks}</ul>
-          <a class="btn btn--accent panel__cta" href="estimate.html?project={s['project']}">Get a Free Estimate {ico('arrow')}</a>
-        </div>
-      </article>
+      <div class="incl">
+        <header class="incl__head" data-reveal>
+          <div>
+            <span class="pill">{ico('layers')}What's Included</span>
+            <h2 class="h2" id="included-title">{esc(s['name'])}, Start to Finish</h2>
+          </div>
+          <div class="incl__intro">{''.join(f'<p>{p}</p>' for p in s['intro'])}</div>
+        </header>
+        <figure class="incl__photo" data-reveal>
+          <img decoding="async" src="assets/img/svc-{s['slug']}.jpg" width="1536" height="1024" alt="{s['detail']}" loading="lazy">
+        </figure>
+        <ul class="incl__grid">{grid}</ul>
+        <p class="incl__cta" data-reveal><a class="btn btn--accent btn--lg" href="estimate.html?project={s['project']}">Get a Free Estimate {ico('arrow')}</a></p>
+      </div>
     </div>
   </section>
 
