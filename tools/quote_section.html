@@ -1,0 +1,78 @@
+<!-- Source of the estimate form, used by build_pages.py for estimate.html -->
+<section class="quote deco deco--glow" id="quote" aria-labelledby="quote-title">
+    <div class="wrap quote__grid">
+      <div class="quote__side" data-reveal>
+        <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>Get Started</span>
+        <h2 class="h2" id="quote-title">Request an Estimate</h2>
+        <p class="quote__lead">Tell us how to reach you and where the house is. We'll call back to talk it through and book a site visit.</p>
+        <img decoding="async" class="quote__img" src="assets/img/team.jpg" width="875" height="520" alt="The Nandco team in black Nandco shirts in front of the lit sign at the office" loading="lazy">
+        <ul class="facts facts--stack facts--dark">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> Prefer to talk? <a href="tel:+12134446596">(213) 444-6596</a></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg> CA license #1044615</li>
+        </ul>
+      </div>
+      <form class="form" id="quote-form" novalidate data-endpoint="" data-reveal>
+        <div class="field">
+          <label for="q-name">Name <span class="req">(required)</span></label>
+          <input id="q-name" name="name" type="text" autocomplete="name" required aria-describedby="q-name-err">
+          <p class="field__err" id="q-name-err" hidden>Please add your name.</p>
+        </div>
+        <div class="field">
+          <label for="q-phone">Phone <span class="req">(required)</span></label>
+          <input id="q-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="q-phone-err">
+          <p class="field__err" id="q-phone-err" hidden>Please add a phone number we can call.</p>
+        </div>
+        <div class="field">
+          <label for="q-email">Email <span class="req">(required)</span></label>
+          <input id="q-email" name="email" type="email" inputmode="email" autocomplete="email" required aria-describedby="q-email-err">
+          <p class="field__err" id="q-email-err" hidden>Please add an email address we can reply to.</p>
+        </div>
+        <div class="field">
+          <label for="q-area">Area</label>
+          <select id="q-area" name="area">
+            <option>Los Angeles</option><option>Bel Air</option><option>Hollywood</option><option>Torrance</option><option>Pasadena</option><option>Van Nuys</option>
+            <option>Burbank</option><option>Santa Monica</option><option>Redondo Beach</option><option>Woodland Hills</option><option>Encino</option><option>Arcadia</option>
+            <option>Sherman Oaks</option><option>Culver City</option><option>Studio City</option><option>Tarzana</option><option>West Hollywood</option><option>Brentwood</option>
+            <option>Beverly Hills</option><option>Pacific Palisades</option><option>Malibu</option><option>Palos Verdes</option><option>Toluca Lake</option><option>Valley Village</option>
+            <option>Somewhere else in LA County</option>
+          </select>
+        </div>
+
+        <details class="more" data-more>
+          <summary>Add project details <span class="req">(optional)</span><svg class="ico" aria-hidden="true"><use href="#i-down"/></svg></summary>
+          <div class="more__body">
+            <fieldset class="choices">
+              <legend>What would you like done?</legend>
+              <label><input type="radio" name="scope" value="Remodel" checked><span>Remodel</span></label>
+              <label><input type="radio" name="scope" value="ADU or addition"><span>ADU or addition</span></label>
+              <label><input type="radio" name="scope" value="New or custom home"><span>New or custom home</span></label>
+              <label><input type="radio" name="scope" value="Fire or damage rebuild"><span>Fire or damage rebuild</span></label>
+            </fieldset>
+            <div class="field-row">
+              <div class="field">
+                <label for="q-layout">Project</label>
+                <select id="q-layout" name="layout">
+                  <option>Kitchen &amp; Bath</option><option>Whole Home</option><option>ADUs &amp; Additions</option><option>New &amp; Custom</option><option selected>Not sure yet</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="q-start">When to start</label>
+                <select id="q-start" name="start">
+                  <option>As soon as possible</option><option selected>In 1 to 3 months</option><option>In 3 to 6 months</option><option>Just planning</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="q-notes">About the project</label>
+              <textarea id="q-notes" name="notes" rows="3" placeholder="The house, what you want to change, and anything we should know"></textarea>
+            </div>
+          </div>
+        </details>
+
+        <button class="btn btn--accent btn--lg btn--block" type="submit" data-send>Request an Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <p class="form__status" role="status" aria-live="polite" data-status></p>
+        <noscript><p class="form__status">To request an estimate, call (213) 444-6596 or email hello@nandcoconstruction.com.</p></noscript>
+        <p class="form__note">We use these details only to reply to your request. See our <a href="privacy.html">Privacy Policy</a>.</p>
+      </form>
+    </div>
+  </section>

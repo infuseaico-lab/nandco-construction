@@ -3,7 +3,14 @@
 Static site in `site/`, built on the Algazy Group template (`algazy-group-full`, branch `claude/pensive-ride-pfstra`):
 `index.html`, `privacy.html`, `terms.html`, `assets/css/style.css`, `assets/js/main.js`,
 plus the ad landing page `free-estimate.html` (`assets/css/lp.css`, `assets/js/lp.js`; noindex, not linked from the main page).
-Open `site/index.html` in a browser; no build step.
+Open `site/index.html` in a browser.
+
+Pages: `index.html` (home), `estimate.html` (free estimate form), `services/*.html` (one page per service, linked from the Services menu), `free-estimate.html` (ad landing page), `privacy.html`, `terms.html`.
+The service pages, the estimate page and the legal page headers are generated from the homepage's header, footer and icons plus the content in `tools/build_pages.py`. After editing either, run:
+
+```
+python3 tools/build_pages.py
+```
 
 Business content and source notes: `content/business-info.md`.
 

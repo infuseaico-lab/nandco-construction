@@ -40,6 +40,27 @@ if (!location.hash) scrollTo(0, 0);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && nav.classList.contains('is-open')) { set(false); btn.focus(); } });
 })();
 
+// Services dropdown: the button opens and closes the list (hover and focus also open it on wide screens).
+(() => {
+  document.querySelectorAll('.navdrop__btn').forEach((btn) => {
+    const set = (open) => btn.setAttribute('aria-expanded', String(open));
+    btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('click', (e) => { if (!btn.parentElement.contains(e.target)) set(false); });
+    btn.parentElement.addEventListener('keydown', (e) => { if (e.key === 'Escape') { set(false); btn.focus(); } });
+  });
+})();
+
+// Estimate page: a project chosen elsewhere on the site (?project=kb|home|adu|new) is filled in.
+(() => {
+  const select = document.getElementById('q-layout');
+  const project = new URLSearchParams(location.search).get('project');
+  if (!select || !project) return;
+  const names = { kb: 'Kitchen & Bath', home: 'Whole Home', adu: 'ADUs & Additions', new: 'New & Custom' };
+  if (names[project]) select.value = names[project];
+  const more = document.querySelector('[data-more]');
+  if (more) more.open = true;
+})();
+
 // Hero headline: two lines at most on phones, whatever the phone's text-size setting. Some phones enlarge
 // text while the page width stays the same, so the headline is measured after it renders (and again when
 // the web font arrives or the width changes) and set to the largest size that fits in two lines.
@@ -214,7 +235,7 @@ if (!location.hash) scrollTo(0, 0);
   const dock = document.querySelector('[data-dock]');
   const heroActions = document.querySelector('[data-hero-actions]');
   const quote = document.getElementById('quote');
-  if (!dock || !heroActions || !quote || !('IntersectionObserver' in window)) return;
+  if (!dock || !heroActions || !('IntersectionObserver' in window)) return;
   let pastHero = false, atQuote = false;
   const set = () => dock.classList.toggle('is-shown', pastHero && !atQuote);
   dock.classList.add('is-managed');
@@ -230,7 +251,7 @@ if (!location.hash) scrollTo(0, 0);
   document.fonts?.addEventListener?.('loadingdone', tight);
   tight();
   new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; set(); }).observe(heroActions);
-  new IntersectionObserver(([e]) => { atQuote = e.isIntersecting; set(); }, { rootMargin: '0px 0px -30% 0px' }).observe(quote);
+  if (quote) new IntersectionObserver(([e]) => { atQuote = e.isIntersecting; set(); }, { rootMargin: '0px 0px -30% 0px' }).observe(quote);
 })();
 
 // Reveal once on entry, staggered within each group. Never replays, never leaves content hidden.

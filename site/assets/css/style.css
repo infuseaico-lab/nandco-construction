@@ -597,3 +597,78 @@ main, .foot { overflow-x: clip; }
 
 /* job titles under the team names: bold */
 .person__role { font-weight: 700; color: var(--color-foreground); }
+
+/* ---------- Services dropdown in the header ---------- */
+.navdrop { position: relative; }
+.navdrop__btn { display: flex; align-items: center; justify-content: space-between; gap: 6px; width: 100%; min-height: 48px; padding: 0; border: 0; border-bottom: 1px solid var(--color-border); background: none; font: inherit; font-size: var(--text-lg); font-weight: 500; color: inherit; cursor: pointer; }
+.navdrop__btn .ico { width: 18px; height: 18px; transition: transform var(--t) var(--ease); }
+.navdrop__btn[aria-expanded="true"] .ico { transform: rotate(180deg); }
+.navdrop__menu { display: none; padding: var(--space-1) 0 var(--space-2) var(--space-4); }
+.navdrop__btn[aria-expanded="true"] + .navdrop__menu { display: grid; }
+.bar__nav.is-open .navdrop__menu a { min-height: 44px; font-size: var(--text-base); color: var(--color-muted-foreground); }
+.navdrop__all a { font-weight: 600; color: var(--color-foreground) !important; }
+@media (min-width: 64em) {
+  .navdrop__btn { width: auto; min-height: 44px; padding: 0 10px 0 12px; border: 0; border-radius: var(--radius-sm); font-size: var(--text-base); color: var(--color-muted-foreground); transition: color var(--t) ease, background-color var(--t) ease; }
+  .navdrop__btn:hover, .navdrop:hover .navdrop__btn { color: var(--color-foreground); background: var(--color-muted); }
+  .navdrop__menu { position: absolute; top: calc(100% + 6px); left: 0; z-index: 40; min-width: 260px; padding: var(--space-2); background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius); box-shadow: var(--shadow-md); }
+  .navdrop:hover .navdrop__menu, .navdrop:focus-within .navdrop__menu, .navdrop__btn[aria-expanded="true"] + .navdrop__menu { display: grid; }
+  .navdrop__menu::before { content: ""; position: absolute; left: 0; right: 0; top: -8px; height: 8px; }
+  .bar__nav .navdrop__menu a { display: flex; width: 100%; padding: 0 12px; color: var(--color-foreground); }
+  .navdrop__all { margin-top: var(--space-1); padding-top: var(--space-1); border-top: 1px solid var(--color-border); }
+}
+
+/* service cards: the whole card opens its page */
+.card { position: relative; }
+.card__link { color: inherit; text-decoration: none; }
+.card__link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.card__link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- closing band: points to the free estimate page ---------- */
+.cta-band { padding-block: var(--space-8); background: var(--color-ink); color: var(--color-on-ink); }
+.cta-band .pill { background: rgb(222 195 132 / 0.16); color: var(--color-accent); }
+.cta-band__in { display: grid; gap: var(--space-5); align-items: center; }
+.cta-band__in > div:first-child { display: grid; gap: var(--space-2); }
+.cta-band p { color: var(--color-on-ink-muted); }
+.cta-band__acts { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.cta-band .btn--outline { border-color: rgb(250 247 238 / 0.85); color: var(--color-on-ink); }
+.cta-band :focus-visible { outline-color: var(--color-on-ink); }
+@media (hover: hover) and (pointer: fine) { .cta-band .btn--outline:hover { background: var(--color-on-ink); color: var(--color-foreground); } }
+@media (min-width: 64em) { .cta-band__in { grid-template-columns: minmax(0, 1fr) auto; } .cta-band { padding-block: var(--space-9); } }
+
+/* ---------- inner pages: a shorter hero ---------- */
+.hero--page { min-height: min(62svh, 560px); }
+@media (min-width: 48em) { .hero--page { min-height: min(64svh, 600px); } }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: var(--space-3); font-size: var(--text-sm); color: var(--color-on-ink-muted); }
+.crumbs a { color: var(--color-on-ink); }
+
+/* service page: what's included, as a checklist */
+.checks { display: grid; gap: var(--space-2); }
+.checks li { display: flex; gap: var(--space-3); align-items: flex-start; padding: var(--space-3) var(--space-4); background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius); }
+.checks .ico { flex: none; margin-top: 2px; color: var(--color-foreground); background: var(--color-accent); border-radius: 999px; padding: 3px; width: 22px; height: 22px; stroke-width: 2.5; }
+.panel__body > p { color: var(--color-muted-foreground); }
+
+/* service page: the timeline, three stages side by side */
+.stages { display: grid; gap: var(--space-4); }
+.stage { display: grid; gap: var(--space-3); align-content: start; padding: var(--space-5); background: var(--color-background); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+.stage ol { display: grid; gap: var(--space-2); }
+.stage li { display: flex; justify-content: space-between; gap: var(--space-4); padding-top: var(--space-2); border-top: 1px solid var(--color-border); }
+.stage li:first-child { border-top: 0; padding-top: 0; }
+.stage li b { font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.stages__total { margin-top: var(--space-5); padding: var(--space-4) var(--space-5); border-radius: var(--radius); background: var(--color-ink); color: var(--color-on-ink); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2); }
+.stages__total span { color: var(--color-on-ink-muted); }
+@media (min-width: 48em) { .stages { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* estimate page: the form section opens the page */
+.quote--page { padding-top: var(--space-8); }
+.next-steps { display: grid; gap: var(--space-4); counter-reset: none; }
+.next-steps li { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-5); background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+.next-steps .ico--tile { margin-bottom: var(--space-1); }
+.next-steps p { color: var(--color-muted-foreground); }
+@media (min-width: 48em) { .next-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* related services: three equal cards, none stretched */
+@media (min-width: 64em) {
+  .cards--related > .card:first-child { grid-column: auto; flex-direction: column; }
+  .cards--related > .card:first-child .card__img { width: 100%; aspect-ratio: 3 / 2; height: auto; min-height: 0; }
+  .cards--related > .card:first-child .card__body { padding: var(--space-5); }
+}

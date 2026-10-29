@@ -65,16 +65,30 @@
     <a class="bar__brand" href="#top">
       <img class="bar__logo" src="assets/brand/logo-480.webp" srcset="assets/brand/logo-480.webp 480w, assets/brand/logo-960.webp 960w" sizes="120px" width="480" height="199" alt="Nandco Construction" fetchpriority="high">
     </a>
-    <nav class="bar__nav" id="site-nav" aria-label="Sections">
-      <a href="#projects">Projects</a>
-      <a href="#services">Services</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#team">Team</a>
-      <a href="#areas">Areas</a>
-      <a href="#questions">FAQ</a>
+    <nav class="bar__nav" id="site-nav" aria-label="Main">
+      <a href="index.html#projects">Projects</a>
+      <div class="navdrop">
+        <button class="navdrop__btn" type="button" aria-expanded="false" aria-controls="nav-services">Services<svg class="ico" aria-hidden="true"><use href="#i-down"/></svg></button>
+        <ul class="navdrop__menu" id="nav-services">
+          <li><a href="services/kitchen-remodeling.html">Kitchen Remodeling</a></li>
+          <li><a href="services/bathroom-remodeling.html">Bathroom Remodeling</a></li>
+          <li><a href="services/home-remodeling.html">Home Remodeling</a></li>
+          <li><a href="services/home-additions.html">Home Additions</a></li>
+          <li><a href="services/adus.html">ADUs</a></li>
+          <li><a href="services/home-restoration.html">Restoration &amp; Fire Rebuilds</a></li>
+          <li><a href="services/pool-house.html">Pool Houses</a></li>
+          <li><a href="services/new-home-construction.html">New Home Construction</a></li>
+          <li><a href="services/custom-home.html">Custom Homes</a></li>
+          <li class="navdrop__all"><a href="index.html#services">All services</a></li>
+        </ul>
+      </div>
+      <a href="index.html#gallery">Gallery</a>
+      <a href="index.html#team">Team</a>
+      <a href="index.html#areas">Areas</a>
+      <a href="index.html#questions">FAQ</a>
     </nav>
     <a class="btn btn--ghost bar__phone" href="tel:+12134446596" aria-label="Call (213) 444-6596"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span>(213) 444-6596</span></a>
-    <a class="btn btn--accent bar__quote" href="#quote">Request an Estimate</a>
+    <a class="btn btn--accent bar__quote" href="estimate.html">Get a Free Estimate</a>
     <button class="bar__menu" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu" hidden><svg class="ico" aria-hidden="true"><use href="#i-menu"/></svg></button>
   </div>
   <div class="bar__progress" aria-hidden="true"><span data-progress></span></div>
@@ -95,7 +109,7 @@
       <h1 class="hero__title" id="hero-title">Remodels, ADUs and Custom Homes in Los Angeles</h1>
       <p class="hero__lead">Design, permits and construction by one owner-led, licensed team, from the first site visit to the final inspection.</p>
       <div class="hero__actions" data-hero-actions>
-        <a class="btn btn--accent btn--lg" href="#quote">Request an Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--accent btn--lg" href="estimate.html">Get a Free Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="btn btn--outline btn--lg" href="tel:+12134446596"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> Call (213) 444-6596</a>
       </div>
       <ul class="facts">
@@ -139,7 +153,7 @@
               <div><dt>Plan Around</dt><dd>Permits for moved walls, plumbing or gas, and lead times on cabinets and stone.</dd></div>
               <div><dt>Typical Timeline</dt><dd>About 3 to 5 months for a kitchen and 2 to 3 for a bathroom, design and permits included.</dd></div>
             </dl>
-            <a class="btn btn--accent panel__cta" href="#quote" aria-label="Request an Estimate for a kitchen or bathroom">Request an Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--accent panel__cta" href="estimate.html?project=kb" aria-label="Get a Free Estimate for a kitchen or bathroom">Get a Free Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
         </article>
         <article class="panel" id="p-home" role="tabpanel" hidden aria-labelledby="tab-home">
@@ -152,7 +166,7 @@
               <div><dt>Plan Around</dt><dd>Structural engineering for removed walls, and where you will live while the work is done.</dd></div>
               <div><dt>Typical Timeline</dt><dd>About 6 to 10 months for a whole-home remodel.</dd></div>
             </dl>
-            <a class="btn btn--accent panel__cta" href="#quote" aria-label="Request an Estimate for a whole-home remodel or rebuild">Request an Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--accent panel__cta" href="estimate.html?project=home" aria-label="Get a Free Estimate for a whole-home remodel or rebuild">Get a Free Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
         </article>
         <article class="panel" id="p-adu" role="tabpanel" hidden aria-labelledby="tab-adu">
@@ -165,7 +179,7 @@
               <div><dt>Plan Around</dt><dd>What your lot and city allow: setbacks, utility connections and separate meters.</dd></div>
               <div><dt>Typical Timeline</dt><dd>About 8 to 12 months for an ADU and 9 to 14 for an addition.</dd></div>
             </dl>
-            <a class="btn btn--accent panel__cta" href="#quote" aria-label="Request an Estimate for an ADU or addition">Request an Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--accent panel__cta" href="estimate.html?project=adu" aria-label="Get a Free Estimate for an ADU or addition">Get a Free Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
         </article>
         <article class="panel" id="p-new" role="tabpanel" hidden aria-labelledby="tab-new">
@@ -178,7 +192,7 @@
               <div><dt>Plan Around</dt><dd>Engineering, plan check and long-lead selections, priced before ground is broken.</dd></div>
               <div><dt>Typical Timeline</dt><dd>About 16 to 30 months from design to move-in.</dd></div>
             </dl>
-            <a class="btn btn--accent panel__cta" href="#quote" aria-label="Request an Estimate for a new or custom home">Request an Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--accent panel__cta" href="estimate.html?project=new" aria-label="Get a Free Estimate for a new or custom home">Get a Free Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
         </article>
       </div>
@@ -197,63 +211,63 @@
         <li class="card" data-reveal>
           <img decoding="async" class="card__img" src="assets/img/kitchen-pendants.jpg" width="1536" height="1024" alt="White kitchen with an oak island under three brass globe pendants" loading="lazy">
           <div class="card__body">
-            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-grid"/></svg> Kitchen Remodeling</h3>
+            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-grid"/></svg> <a class="card__link" href="services/kitchen-remodeling.html">Kitchen Remodeling</a></h3>
             <p>Kitchens rebuilt around how you cook and gather: new layouts and islands, custom cabinetry, stone counters, ventilation, lighting and appliances, planned before demolition begins.</p>
           </div>
         </li>
         <li class="card" data-reveal>
           <img decoding="async" class="card__img" src="assets/img/bathroom.jpg" width="1536" height="1024" alt="Placeholder for a finished Nandco bathroom" loading="lazy">
           <div class="card__body">
-            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-layers"/></svg> Bathroom Remodeling</h3>
+            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-layers"/></svg> <a class="card__link" href="services/bathroom-remodeling.html">Bathroom Remodeling</a></h3>
             <p>Primary suites, guest baths and powder rooms, with curbless showers, tile and glass built on waterproofing done right.</p>
           </div>
         </li>
         <li class="card" data-reveal>
           <img decoding="async" class="card__img" src="assets/img/living-room.jpg" width="1536" height="1024" alt="Living room with a white beamed ceiling and a wood slat wall" loading="lazy">
           <div class="card__body">
-            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-home"/></svg> Home Remodeling</h3>
+            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-home"/></svg> <a class="card__link" href="services/home-remodeling.html">Home Remodeling</a></h3>
             <p>Whole-house and multi-room remodels, from opened-up floor plans to new electrical, plumbing and HVAC behind the walls.</p>
           </div>
         </li>
         <li class="card" data-reveal>
           <img decoding="async" class="card__img" src="assets/img/farmhouse-back.jpg" width="1536" height="1024" alt="Back of a white farmhouse with a pergola and open folding doors" loading="lazy">
           <div class="card__body">
-            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-home"/></svg> Home Additions</h3>
+            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-home"/></svg> <a class="card__link" href="services/home-additions.html">Home Additions</a></h3>
             <p>Ground-floor additions and second stories, with the roof line, windows and finishes matched so the new space looks original.</p>
           </div>
         </li>
         <li class="card" data-reveal>
           <img decoding="async" class="card__img" src="assets/img/adu.jpg" width="1536" height="1024" alt="Placeholder for a finished Nandco ADU" loading="lazy">
           <div class="card__body">
-            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-home"/></svg> Accessory Dwelling Units</h3>
+            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-home"/></svg> <a class="card__link" href="services/adus.html">Accessory Dwelling Units</a></h3>
             <p>Detached ADUs, garage conversions and junior ADUs for family, guests or rental income, permitted through your city.</p>
           </div>
         </li>
         <li class="card" data-reveal>
           <img decoding="async" class="card__img" src="assets/img/dining-blue.jpg" width="1536" height="1024" alt="Open kitchen and dining room with blue cabinetry and wood floors" loading="lazy">
           <div class="card__body">
-            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-shield"/></svg> Restoration and Fire Rebuilds</h3>
+            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-shield"/></svg> <a class="card__link" href="services/home-restoration.html">Restoration and Fire Rebuilds</a></h3>
             <p>Fire and damage rebuilds coordinated with your insurance adjuster, and older homes repaired with their original character kept.</p>
           </div>
         </li>
         <li class="card" data-reveal>
           <img decoding="async" class="card__img" src="assets/img/pool-house.jpg" width="1536" height="1024" alt="Modern black house with a pool, spa and lounge chairs on a paver-and-turf deck" loading="lazy">
           <div class="card__body">
-            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-zap"/></svg> Pool Houses</h3>
+            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-zap"/></svg> <a class="card__link" href="services/pool-house.html">Pool Houses</a></h3>
             <p>Pool houses and cabanas with changing rooms, baths, outdoor kitchens and covered space, designed to match the main house.</p>
           </div>
         </li>
         <li class="card" data-reveal>
           <img decoding="async" class="card__img" src="assets/img/farmhouse-front.jpg" width="1536" height="1024" alt="White two-story modern farmhouse with a black garage door" loading="lazy">
           <div class="card__body">
-            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-clipboard"/></svg> New Home Construction</h3>
+            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-clipboard"/></svg> <a class="card__link" href="services/new-home-construction.html">New Home Construction</a></h3>
             <p>Ground-up homes from approved plans, with pre-construction budgeting and one team running the site.</p>
           </div>
         </li>
         <li class="card" data-reveal>
           <img decoding="async" class="card__img" src="assets/img/kitchen-marble.jpg" width="1536" height="1024" alt="Inset cream cabinetry, a marble-topped walnut island and a black range" loading="lazy">
           <div class="card__body">
-            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-star"/></svg> Custom Homes</h3>
+            <h3 class="h3"><svg class="ico ico--tile" aria-hidden="true"><use href="#i-star"/></svg> <a class="card__link" href="services/custom-home.html">Custom Homes</a></h3>
             <p>One-of-a-kind homes built with you from the first sketch, with every selection ordered and tracked for you.</p>
           </div>
         </li>
@@ -261,7 +275,7 @@
           <div class="card__body">
             <h3 class="h3">Not Sure Where to Start?</h3>
             <p>Tell us about the house and what you want to change. We'll visit, measure and talk it through.</p>
-            <a class="btn btn--accent" href="#quote">Request an Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--accent" href="estimate.html">Get a Free Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
         </li>
       </ul>
@@ -296,7 +310,7 @@
           <p>Your project manager runs the site with our vetted trades, every inspection is passed, and we close the punch list with you before handover.</p>
         </li>
       </ol>
-      <a class="btn btn--accent section__more" href="#quote">Request an Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--accent section__more" href="estimate.html">Get a Free Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </section>
 
@@ -377,7 +391,7 @@
           <div class="crew__head">
             <h3 class="crew__title">Your Dedicated Project Team</h3>
             <p>Four roles on every job, so you always know who to call.</p>
-            <a class="btn btn--accent" href="#quote">Meet Us on Site <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--accent" href="estimate.html">Meet Us on Site <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
           <dl class="crew__roles">
             <div><dt><svg class="ico" aria-hidden="true"><use href="#i-clipboard"/></svg>Project Managers</dt><dd>Run every aspect of the project, keeping deadlines, budget and quality on track.</dd></div>
@@ -404,7 +418,7 @@
         <li class="promise" data-reveal><svg class="ico ico--tile" aria-hidden="true"><use href="#i-layers"/></svg><h3 class="h3">Permit Management</h3><p>We handle city submissions and inspections from start to finish.</p></li>
         <li class="promise" data-reveal><svg class="ico ico--tile" aria-hidden="true"><use href="#i-users"/></svg><h3 class="h3">Premium Subcontractors</h3><p>Our vetted trade network, not whoever picks up the phone.</p></li>
       </ul>
-      <a class="btn btn--accent section__more" href="#quote">Request an Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--accent section__more" href="estimate.html">Get a Free Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </section>
 
@@ -534,84 +548,18 @@
     </div>
   </section>
 
-  <!-- Climax: the estimate request. Name, phone and email are required; the rest is optional.
-       Submissions: set data-endpoint on the form to a form service URL (Formspree, Basin, Netlify…)
-       to receive them by email. Left empty, sending opens an email to hello@nandcoconstruction.com with the details. -->
-  <section class="quote deco deco--glow" id="quote" aria-labelledby="quote-title">
-    <div class="wrap quote__grid">
-      <div class="quote__side" data-reveal>
+  <!-- Closing band: the free estimate has its own page -->
+  <section class="cta-band deco deco--glow" id="estimate" aria-labelledby="cta-title">
+    <div class="wrap cta-band__in" data-reveal>
+      <div>
         <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>Get Started</span>
-        <h2 class="h2" id="quote-title">Request an Estimate</h2>
-        <p class="quote__lead">Tell us how to reach you and where the house is. We'll call back to talk it through and book a site visit.</p>
-        <img decoding="async" class="quote__img" src="assets/img/team.jpg" width="875" height="520" alt="The Nandco team in black Nandco shirts in front of the lit sign at the office" loading="lazy">
-        <ul class="facts facts--stack facts--dark">
-          <li><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> Prefer to talk? <a href="tel:+12134446596">(213) 444-6596</a></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg> CA license #1044615</li>
-        </ul>
+        <h2 class="h2" id="cta-title">Ready to Start Your Project?</h2>
+        <p>A free on-site visit and a written, line-item estimate, with no obligation.</p>
       </div>
-      <form class="form" id="quote-form" novalidate data-endpoint="" data-reveal>
-        <div class="field">
-          <label for="q-name">Name <span class="req">(required)</span></label>
-          <input id="q-name" name="name" type="text" autocomplete="name" required aria-describedby="q-name-err">
-          <p class="field__err" id="q-name-err" hidden>Please add your name.</p>
-        </div>
-        <div class="field">
-          <label for="q-phone">Phone <span class="req">(required)</span></label>
-          <input id="q-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="q-phone-err">
-          <p class="field__err" id="q-phone-err" hidden>Please add a phone number we can call.</p>
-        </div>
-        <div class="field">
-          <label for="q-email">Email <span class="req">(required)</span></label>
-          <input id="q-email" name="email" type="email" inputmode="email" autocomplete="email" required aria-describedby="q-email-err">
-          <p class="field__err" id="q-email-err" hidden>Please add an email address we can reply to.</p>
-        </div>
-        <div class="field">
-          <label for="q-area">Area</label>
-          <select id="q-area" name="area">
-            <option>Los Angeles</option><option>Bel Air</option><option>Hollywood</option><option>Torrance</option><option>Pasadena</option><option>Van Nuys</option>
-            <option>Burbank</option><option>Santa Monica</option><option>Redondo Beach</option><option>Woodland Hills</option><option>Encino</option><option>Arcadia</option>
-            <option>Sherman Oaks</option><option>Culver City</option><option>Studio City</option><option>Tarzana</option><option>West Hollywood</option><option>Brentwood</option>
-            <option>Beverly Hills</option><option>Pacific Palisades</option><option>Malibu</option><option>Palos Verdes</option><option>Toluca Lake</option><option>Valley Village</option>
-            <option>Somewhere else in LA County</option>
-          </select>
-        </div>
-
-        <details class="more" data-more>
-          <summary>Add project details <span class="req">(optional)</span><svg class="ico" aria-hidden="true"><use href="#i-down"/></svg></summary>
-          <div class="more__body">
-            <fieldset class="choices">
-              <legend>What would you like done?</legend>
-              <label><input type="radio" name="scope" value="Remodel" checked><span>Remodel</span></label>
-              <label><input type="radio" name="scope" value="ADU or addition"><span>ADU or addition</span></label>
-              <label><input type="radio" name="scope" value="New or custom home"><span>New or custom home</span></label>
-              <label><input type="radio" name="scope" value="Fire or damage rebuild"><span>Fire or damage rebuild</span></label>
-            </fieldset>
-            <div class="field-row">
-              <div class="field">
-                <label for="q-layout">Project</label>
-                <select id="q-layout" name="layout">
-                  <option>Kitchen &amp; Bath</option><option>Whole Home</option><option>ADUs &amp; Additions</option><option>New &amp; Custom</option><option selected>Not sure yet</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="q-start">When to start</label>
-                <select id="q-start" name="start">
-                  <option>As soon as possible</option><option selected>In 1 to 3 months</option><option>In 3 to 6 months</option><option>Just planning</option>
-                </select>
-              </div>
-            </div>
-            <div class="field">
-              <label for="q-notes">About the project</label>
-              <textarea id="q-notes" name="notes" rows="3" placeholder="The house, what you want to change, and anything we should know"></textarea>
-            </div>
-          </div>
-        </details>
-
-        <button class="btn btn--accent btn--lg btn--block" type="submit" data-send>Request an Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-        <p class="form__status" role="status" aria-live="polite" data-status></p>
-        <noscript><p class="form__status">To request an estimate, call (213) 444-6596 or email hello@nandcoconstruction.com.</p></noscript>
-        <p class="form__note">We use these details only to reply to your request. See our <a href="privacy.html">Privacy Policy</a>.</p>
-      </form>
+      <div class="cta-band__acts">
+        <a class="btn btn--accent btn--lg" href="estimate.html">Get a Free Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline btn--lg" href="tel:+12134446596"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> (213) 444-6596</a>
+      </div>
     </div>
   </section>
 
@@ -627,7 +575,7 @@
       <p class="foot__head">Contact</p>
       <a href="tel:+12134446596">(213) 444-6596</a>
       <a href="mailto:hello@nandcoconstruction.com">hello@nandcoconstruction.com</a>
-      <a href="#quote">Request an Estimate</a>
+      <a href="estimate.html">Get a Free Estimate</a>
     </div>
     <div>
       <p class="foot__head">On this page</p>
@@ -653,10 +601,10 @@
   </div>
 </footer>
 
-<!-- Phone only: Call and Request an Estimate stay in reach whenever the hero's own buttons are out of sight -->
+<!-- Phone only: Call and Get a Free Estimate stay in reach whenever the hero's own buttons are out of sight -->
 <div class="dock" data-dock>
   <a class="btn btn--outline" href="tel:+12134446596" aria-label="Call (213) 444-6596"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> <span class="dock__call">Call</span></a>
-  <a class="btn btn--accent" href="#quote">Request an Estimate</a>
+  <a class="btn btn--accent" href="estimate.html">Get a Free Estimate</a>
 </div>
 
 <script src="assets/js/main.js" defer></script>

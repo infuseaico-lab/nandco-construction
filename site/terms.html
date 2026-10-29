@@ -25,6 +25,7 @@
     <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+      <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
   </defs>
 </svg>
 
@@ -33,15 +34,30 @@
     <a class="bar__brand" href="index.html">
       <img class="bar__logo" src="assets/brand/logo-480.webp" srcset="assets/brand/logo-480.webp 480w, assets/brand/logo-960.webp 960w" sizes="(min-width: 64em) 240px, 200px" width="480" height="199" alt="Nandco Construction, home">
     </a>
-    <nav class="bar__nav" id="site-nav" aria-label="Main page sections">
-      <a href="index.html#layouts">Layouts</a>
-      <a href="index.html#services">Services</a>
+    <nav class="bar__nav" id="site-nav" aria-label="Main">
+      <a href="index.html#projects">Projects</a>
+      <div class="navdrop">
+        <button class="navdrop__btn" type="button" aria-expanded="false" aria-controls="nav-services">Services<svg class="ico" aria-hidden="true"><use href="#i-down"/></svg></button>
+        <ul class="navdrop__menu" id="nav-services">
+          <li><a href="services/kitchen-remodeling.html">Kitchen Remodeling</a></li>
+          <li><a href="services/bathroom-remodeling.html">Bathroom Remodeling</a></li>
+          <li><a href="services/home-remodeling.html">Home Remodeling</a></li>
+          <li><a href="services/home-additions.html">Home Additions</a></li>
+          <li><a href="services/adus.html">ADUs</a></li>
+          <li><a href="services/home-restoration.html">Restoration &amp; Fire Rebuilds</a></li>
+          <li><a href="services/pool-house.html">Pool Houses</a></li>
+          <li><a href="services/new-home-construction.html">New Home Construction</a></li>
+          <li><a href="services/custom-home.html">Custom Homes</a></li>
+          <li class="navdrop__all"><a href="index.html#services">All services</a></li>
+        </ul>
+      </div>
       <a href="index.html#gallery">Gallery</a>
+      <a href="index.html#team">Team</a>
       <a href="index.html#areas">Areas</a>
       <a href="index.html#questions">FAQ</a>
     </nav>
     <a class="btn btn--ghost bar__phone" href="tel:+12134446596" aria-label="Call (213) 444-6596"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span>(213) 444-6596</span></a>
-    <a class="btn btn--accent bar__quote" href="index.html#quote">Request an Estimate</a>
+    <a class="btn btn--accent bar__quote" href="estimate.html">Get a Free Estimate</a>
     <button class="bar__menu" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu" hidden><svg class="ico" aria-hidden="true"><use href="#i-menu"/></svg></button>
   </div>
   <div class="bar__progress" aria-hidden="true"><span data-progress></span></div>
@@ -118,7 +134,7 @@
       <p class="foot__head">Contact</p>
       <a href="tel:+12134446596">(213) 444-6596</a>
       <a href="mailto:hello@nandcoconstruction.com">hello@nandcoconstruction.com</a>
-      <a href="index.html#quote">Request an Estimate</a>
+      <a href="estimate.html">Get a Free Estimate</a>
     </div>
     <div>
       <p class="foot__head">Main page</p>
