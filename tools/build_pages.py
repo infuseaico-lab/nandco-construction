@@ -237,11 +237,6 @@ def service_page(s):
         <a class="btn btn--accent btn--lg" href="estimate.html?project={s['project']}">Get a Free Estimate {ico('arrow')}</a>
         <a class="btn btn--outline btn--lg" href="tel:{TEL}">{ico('phone')} Call {PHONE}</a>
       </div>
-      <ul class="facts">
-        <li>{ico('shield')} CA license #1044615, bonded and insured</li>
-        <li>{ico('clipboard')} Permits and inspections handled</li>
-        <li>{ico('pin')} 24 neighborhoods across Los Angeles</li>
-      </ul>
     </div>
   </section>
 
