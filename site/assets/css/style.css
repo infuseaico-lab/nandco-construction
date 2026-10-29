@@ -721,7 +721,7 @@ main, .foot { overflow-x: clip; }
 .incl__intro, .incl__intro p, .incl__head .section__intro { max-width: none !important; }
 
 /* "Not sure where to start" card: a quiet photo under a 54% black wash */
-.card--cta-photo { background: linear-gradient(rgb(0 0 0 / .54), rgb(0 0 0 / .54)), url("../img/cta-plans.jpg") center / cover, var(--color-ink); }
+.card--cta-photo { background: linear-gradient(rgb(0 0 0 / .54), rgb(0 0 0 / .54)), url("../img/cta-home.jpg") center / cover, var(--color-ink); }
 .card--cta-photo .card__body p { color: rgb(255 255 255 / .82); }
 
 /* Homepage gallery: link to the full gallery page */
