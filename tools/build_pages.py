@@ -124,7 +124,7 @@ SERVICES = [
          build=[("Demolition and rough-in", "2–3 wks"), ("Cabinets and counters", "3–5 wks"), ("Finishes and appliances", "1–2 wks")],
          total="3–5 months", result="Your new kitchen"),
     dict(slug="bathroom-remodeling", name="Bathroom Remodeling", project="kb", hero="hero-4", img="bathroom", img2="kitchen-marble",
-         alt="Placeholder for a finished Nandco bathroom",
+         alt="Remodeled bathroom with a white-oak vanity, brass fixtures and a frameless glass shower",
          line="Primary suites, guest baths and powder rooms, with the waterproofing done right under every tile.",
          intro=["What makes a bathroom last is mostly out of sight: the waterproofing, the slope of the shower floor, the ventilation. We get those right first, then build the tile, glass and fixtures you chose on top of them.",
                 "From curbless showers to a simple powder-room refresh, the scope and the cost are written down line by line before work starts."],
@@ -151,7 +151,7 @@ SERVICES = [
          build=[("Foundation and framing", "4–8 wks"), ("Systems and rough-in", "4–6 wks"), ("Finishes and tie-in", "6–10 wks")],
          total="9–14 months", result="Your added space"),
     dict(slug="adus", name="Accessory Dwelling Units (ADUs)", project="adu", hero="hero-3", img="adu", img2="farmhouse-back",
-         alt="Placeholder for a finished Nandco ADU",
+         alt="Detached backyard ADU with white stucco, oak siding and black-framed windows",
          line="Detached ADUs, garage conversions and junior ADUs for family, guests or rental income.",
          intro=["An ADU is a small house with all the requirements of a big one: its own foundation, utilities, kitchen and bath, and its own permit. We review your lot first, then design and build the unit that fits it.",
                 "Whether it is a detached backyard unit, a converted garage or a junior ADU inside the house, we handle the city submission and every inspection."],
@@ -227,7 +227,7 @@ def service_page(s):
     body = f"""
   <section class="hero hero--page" aria-labelledby="hero-title">
     <div class="hero__media">
-      <img decoding="async" class="is-on" src="assets/img/{s['hero']}.jpg" width="1536" height="1024" alt="" fetchpriority="high">
+      <img decoding="async" class="is-on" src="assets/img/{s['img']}.jpg" width="1536" height="1024" alt="{s['alt']}" fetchpriority="high">
     </div>
     <div class="hero__copy">
       <p class="crumbs"><a href="index.html">Home</a><span aria-hidden="true">/</span><a href="index.html#services">Services</a><span aria-hidden="true">/</span><span>{esc(s['name'])}</span></p>
