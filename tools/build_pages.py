@@ -3,6 +3,7 @@
 Run from the repository root after editing site/index.html or the content below:
     python3 tools/build_pages.py
 """
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -482,6 +483,19 @@ def legal_nav():
         p.write_text(html)
 
 
+def cache_bust():
+    """Stamp every page's CSS and JS links with a content hash, so browsers fetch the new file after a change."""
+    stamp = {}
+    for f in [*(SITE / "assets" / "css").glob("*.css"), *(SITE / "assets" / "js").glob("*.js")]:
+        stamp[f"assets/{f.parent.name}/{f.name}"] = hashlib.md5(f.read_bytes()).hexdigest()[:8]
+    for page in [*SITE.glob("*.html"), *SITE.glob("services/*.html")]:
+        html = page.read_text()
+        new = re.sub(r'(assets/(?:css|js)/[\w.-]+\.(?:css|js))(?:\?v=\w+)?"',
+                     lambda m: f'{m.group(1)}?v={stamp[m.group(1)]}"' if m.group(1) in stamp else m.group(0), html)
+        if new != html:
+            page.write_text(new)
+
+
 QUOTE_SOURCE = (SITE.parent / "tools" / "quote_section.html").read_text()
 
 if __name__ == "__main__":
@@ -492,4 +506,5 @@ if __name__ == "__main__":
     estimate_page()
     gallery_page()
     legal_nav()
+    cache_bust()
     print("built", len(SERVICES), "service pages, estimate.html, and updated legal page headers")

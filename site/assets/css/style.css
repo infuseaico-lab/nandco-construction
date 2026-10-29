@@ -836,3 +836,6 @@ main, .foot { overflow-x: clip; }
 
 /* swipe strips move sideways only: no vertical wobble inside the strip on phones */
 .gallery { overflow-y: hidden; overscroll-behavior-y: auto; }
+
+/* promise titles: a touch smaller on phones */
+@media (max-width: 39.99em) { .promise .h3 { font-size: 1rem; } }
