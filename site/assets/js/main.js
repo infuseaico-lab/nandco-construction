@@ -4,8 +4,12 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Open at the top: browsers restore the last scroll position on reload, which lands mid-page.
 // A link to a section (#quote, #areas…) still goes to that section.
+// Runs again on load and pageshow (back/forward cache), after late layout shifts could move it.
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-if (!location.hash) scrollTo(0, 0);
+const toTop = () => { if (!location.hash) scrollTo({ top: 0, left: 0, behavior: 'instant' }); };
+toTop();
+addEventListener('load', toTop);
+addEventListener('pageshow', toTop);
 
 // Reading progress along the bottom of the header (the storytelling pattern's progress indicator).
 (() => {
@@ -284,3 +288,35 @@ if (!location.hash) scrollTo(0, 0);
 })();
 
 document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
+
+// Gallery page: filter by kind of space; open photos in a lightbox with prev/next.
+(() => {
+  const grid = document.querySelector('[data-ggrid]');
+  if (!grid) return;
+  const shots = [...grid.querySelectorAll('.gshot')];
+  document.querySelectorAll('[data-filter]').forEach((btn, _, all) => btn.addEventListener('click', () => {
+    all.forEach(b => { b.classList.toggle('is-on', b === btn); b.setAttribute('aria-pressed', b === btn); });
+    shots.forEach(s => { s.hidden = btn.dataset.filter !== 'all' && s.dataset.kind !== btn.dataset.filter; });
+  }));
+  const box = document.querySelector('[data-lightbox]');
+  const img = box.querySelector('img'), cap = box.querySelector('.lightbox__cap');
+  let i = 0;
+  const show = n => {
+    const vis = shots.filter(s => !s.hidden);
+    i = (n + vis.length) % vis.length;
+    const src = vis[i].querySelector('img');
+    img.src = src.src; img.alt = src.alt; cap.textContent = src.alt;
+  };
+  shots.forEach(s => s.querySelector('.gshot__open').addEventListener('click', () => {
+    show(shots.filter(x => !x.hidden).indexOf(s)); box.showModal();
+  }));
+  box.addEventListener('click', e => {
+    const b = e.target.closest('[data-lb]');
+    if (b) b.dataset.lb === 'close' ? box.close() : show(i + +b.dataset.lb);
+    else if (e.target === box) box.close();
+  });
+  box.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') show(i - 1);
+    if (e.key === 'ArrowRight') show(i + 1);
+  });
+})();

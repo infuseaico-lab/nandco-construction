@@ -12,6 +12,8 @@ The service pages, the estimate page and the legal page headers are generated fr
 python3 tools/build_pages.py
 ```
 
+Gallery page: `site/gallery.html` (generated; edit the `GALLERY` list in `tools/build_pages.py` to add or reorder photos).
+
 Business content and source notes: `content/business-info.md`.
 
 ## Photos
@@ -19,7 +21,7 @@ Business content and source notes: `content/business-info.md`.
 Real Nandco photos: `living-room.jpg`, `kitchen-oak.jpg`, `team.jpg`, `office-sign.jpg`, `tony-nguyen.jpg`, `collin-morgan.jpg`.
 
 AI-generated (OpenAI image model, styled on Nandco project photos) and to be replaced with real project photos before launch, keeping the same file names in `site/assets/img/`:
-`house-dusk.jpg`, `kitchen-pendants.jpg`, `pool-house.jpg`, `farmhouse-back.jpg`, `farmhouse-front.jpg`, `kitchen-galley.jpg`, `dining-blue.jpg`, `kitchen-marble.jpg`, `bathroom.jpg`, `adu.jpg`, `site-visit.jpg`, `selections.jpg`, `permits.jpg`, `rough-in.jpg`, and the nine `svc-*.jpg` images used in each service page's "What's Included" section.
+`house-dusk.jpg`, `kitchen-pendants.jpg`, `pool-house.jpg`, `farmhouse-back.jpg`, `farmhouse-front.jpg`, `kitchen-galley.jpg`, `dining-blue.jpg`, `kitchen-marble.jpg`, `bathroom.jpg`, `adu.jpg`, `site-visit.jpg`, `selections.jpg`, `permits.jpg`, `rough-in.jpg`, the nine `svc-*.jpg` images used in each service page's "What's Included" section, the eight `g-*.jpg` gallery-page photos, and `cta-plans.jpg` (background of the homepage "Not Sure Where to Start?" card).
 
 Plain backgrounds, no longer used by the pages: `hero-1.jpg` to `hero-4.jpg`.
 

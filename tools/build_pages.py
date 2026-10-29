@@ -333,6 +333,102 @@ def estimate_page():
          f"Request a free on-site estimate from Nandco Construction. Call {PHONE} or send the form.", body)
 
 
+# Gallery page: every project photo, filterable by kind of space, opening in a lightbox.
+GALLERY = [
+    ("kitchens", "Kitchens", [
+        ("kitchen-oak", "Oak and marble kitchen with a waterfall island"),
+        ("kitchen-pendants", "White kitchen with an oak island and brass globe pendants"),
+        ("kitchen-marble", "Oak cabinets and a marble waterfall island"),
+        ("kitchen-galley", "White shaker kitchen with a 48-inch range"),
+        ("g-kitchen-navy", "Navy island with white shaker cabinets"),
+        ("svc-kitchen-remodeling", "Oak cabinetry, marble backsplash and a brass pot filler"),
+        ("dining-blue", "Blue cabinetry in an open kitchen and dining room"),
+    ]),
+    ("bathrooms", "Bathrooms", [
+        ("svc-bathroom-remodeling", "Primary bath with a soaking tub and double vanity"),
+        ("bathroom", "Oak vanity and frameless glass shower"),
+        ("g-bath-zellige", "Green zellige shower and floating oak vanity"),
+        ("g-powder-room", "Powder room with a fluted oak vanity"),
+    ]),
+    ("living", "Living Spaces", [
+        ("living-room", "Living room with a white beamed ceiling and slat wall"),
+        ("svc-home-remodeling", "Open-plan great room after a whole-home remodel"),
+        ("svc-new-home-construction", "Double-height living room in a new home"),
+        ("svc-home-restoration", "Restored 1920s living room"),
+        ("svc-custom-home", "Custom home entry with a floating oak staircase"),
+        ("svc-home-additions", "Second-story bedroom addition with a skylight"),
+        ("g-primary-suite", "Primary suite with a paneled oak wall and fireplace"),
+        ("g-dining-builtins", "Dining room with oak built-ins"),
+        ("g-laundry", "Laundry and mudroom with oak cabinets"),
+    ]),
+    ("outdoor", "Exteriors & Outdoor", [
+        ("hero-home-exterior", "Modern home exterior at golden hour"),
+        ("house-dusk", "Remodeled single-story home at dusk"),
+        ("farmhouse-front", "New modern farmhouse"),
+        ("farmhouse-back", "Pergola and folding doors to the backyard"),
+        ("g-craftsman-exterior", "Restored craftsman bungalow"),
+        ("pool-house", "Pool, spa and pool house"),
+        ("svc-pool-house", "Pool house lounge open to the pool"),
+        ("adu", "Detached backyard ADU"),
+        ("svc-adus", "Inside a backyard ADU"),
+        ("g-patio", "Covered patio with an outdoor kitchen"),
+    ]),
+]
+
+
+def gallery_page():
+    tabs = '<button type="button" class="is-on" data-filter="all" aria-pressed="true">All</button>' + "".join(
+        f'<button type="button" data-filter="{key}" aria-pressed="false">{esc(label)}</button>' for key, label, _ in GALLERY)
+    shots = "".join(
+        f"""
+        <figure class="gshot" data-kind="{key}" data-reveal>
+          <button type="button" class="gshot__open" aria-label="Enlarge: {cap}">
+            <img decoding="async" src="assets/img/{img}.jpg" width="1536" height="1024" alt="{cap}" loading="lazy">
+          </button>
+          <figcaption>{cap}</figcaption>
+        </figure>""" for key, _, items in GALLERY for img, cap in items)
+    body = f"""
+  <section class="hero hero--page" aria-labelledby="hero-title">
+    <div class="hero__media">
+      <img decoding="async" class="is-on" src="assets/img/hero-great-room.jpg" width="1536" height="1024" alt="" fetchpriority="high">
+    </div>
+    <div class="hero__copy">
+      <p class="crumbs"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Gallery</span></p>
+      <h1 class="hero__title" id="hero-title">Project Gallery</h1>
+      <p class="hero__lead">Kitchens, bathrooms, whole-home remodels, ADUs and new homes across Los Angeles.</p>
+      <div class="hero__actions" data-hero-actions>
+        <a class="btn btn--accent btn--lg" href="estimate.html">Get a Free Estimate {ico('arrow')}</a>
+        <a class="btn btn--outline btn--lg" href="tel:{TEL}">{ico('phone')} Call {PHONE}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="photos" aria-labelledby="photos-title">
+    <div class="wrap">
+      <header class="section__head" data-reveal>
+        <span class="pill">{ico('grid')}Gallery</span>
+        <h2 class="h2" id="photos-title">Our Work</h2>
+      </header>
+      <div class="gfilter" role="group" aria-label="Show photos of">{tabs}</div>
+      <div class="ggrid" data-ggrid>{shots}
+      </div>
+    </div>
+  </section>
+
+  <dialog class="lightbox" data-lightbox aria-label="Photo">
+    <img src="" alt="">
+    <p class="lightbox__cap"></p>
+    <button type="button" class="lightbox__btn lightbox__close" data-lb="close" aria-label="Close">{ico('close')}</button>
+    <button type="button" class="lightbox__btn lightbox__prev" data-lb="-1" aria-label="Previous photo">{ico('left')}</button>
+    <button type="button" class="lightbox__btn lightbox__next" data-lb="1" aria-label="Next photo">{ico('right')}</button>
+  </dialog>
+
+{cta_band()}
+"""
+    page("gallery.html", "Project Gallery | Nandco Construction",
+         "Photos of kitchens, bathrooms, remodels, ADUs and new homes across Los Angeles by Nandco Construction.", body)
+
+
 def legal_nav():
     for name in ("privacy.html", "terms.html"):
         p = SITE / name
@@ -355,5 +451,6 @@ if __name__ == "__main__":
     for s in SERVICES:
         service_page(s)
     estimate_page()
+    gallery_page()
     legal_nav()
     print("built", len(SERVICES), "service pages, estimate.html, and updated legal page headers")

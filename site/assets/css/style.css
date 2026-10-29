@@ -719,3 +719,30 @@ main, .foot { overflow-x: clip; }
 .incl__intro { max-width: 72ch; }
 /* the intro runs the full width of the section, edge to edge above the photo */
 .incl__intro, .incl__intro p, .incl__head .section__intro { max-width: none !important; }
+
+/* "Not sure where to start" card: a quiet photo under a 54% black wash */
+.card--cta-photo { background: linear-gradient(rgb(0 0 0 / .54), rgb(0 0 0 / .54)), url("../img/cta-plans.jpg") center / cover, var(--color-ink); }
+.card--cta-photo .card__body p { color: rgb(255 255 255 / .82); }
+
+/* Homepage gallery: link to the full gallery page */
+.gallery__more { display: flex; justify-content: center; margin-top: var(--space-8); }
+
+/* Gallery page: filter tabs, photo grid, lightbox */
+.gfilter { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-6); }
+.gfilter button { font: inherit; font-weight: 600; padding: .6em 1.2em; border-radius: 999px; border: 0; background: var(--color-ink); color: var(--color-on-ink); cursor: pointer; }
+.gfilter button.is-on { background: var(--color-accent); color: var(--color-ink); }
+.ggrid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); }
+.gshot { margin: 0; display: grid; gap: var(--space-2); }
+.gshot[hidden] { display: none; }
+.gshot__open { display: block; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: var(--radius-lg, 12px); overflow: hidden; }
+.gshot__open img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transition: transform .4s ease; }
+.gshot__open:hover img { transform: scale(1.04); }
+.gshot figcaption { font-size: .9rem; color: var(--color-muted-foreground); }
+.lightbox { width: min(96vw, 80rem); max-height: 94vh; padding: 0; border: 0; background: transparent !important; box-shadow: none; overflow: visible; }
+.lightbox::backdrop { background: rgb(0 0 0 / .88); }
+.lightbox img { display: block; width: auto; max-width: 100%; margin-inline: auto; max-height: 84vh; object-fit: contain; border-radius: 8px; }
+.lightbox__cap { margin: var(--space-3) 0 0; text-align: center; color: #fff; }
+.lightbox__btn { position: absolute; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%; border: 0; background: var(--color-accent); color: var(--color-ink); cursor: pointer; }
+.lightbox__close { top: -3.25rem; right: 0; }
+.lightbox__prev { left: .5rem; top: 50%; translate: 0 -50%; }
+.lightbox__next { right: .5rem; top: 50%; translate: 0 -50%; }

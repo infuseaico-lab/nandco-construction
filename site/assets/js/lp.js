@@ -1,3 +1,10 @@
+// Open at the top on load, reload and back/forward.
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+const toTop = () => { if (!location.hash) scrollTo({ top: 0, left: 0, behavior: 'instant' }); };
+toTop();
+addEventListener('load', toTop);
+addEventListener('pageshow', toTop);
+
 // Nandco Construction: free estimate ad landing page (free-estimate.html).
 
 // Reveal once when an element enters the viewport. Never replays, never leaves content hidden.
