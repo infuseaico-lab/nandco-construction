@@ -27,7 +27,7 @@ It converts the photo to both WebP sizes, deletes the original, and updates the 
 Real Nandco photos: `living-room`, `kitchen-oak`, `team`, `office-sign`, `tony-nguyen`, `collin-morgan`.
 
 AI-generated (OpenAI image model, styled on Nandco project photos), to be replaced with real project photos before launch under the same names:
-`house-dusk`, `kitchen-pendants`, `pool-house`, `farmhouse-back`, `farmhouse-front`, `kitchen-galley`, `dining-blue`, `kitchen-marble`, `bathroom`, `adu`, `site-visit`, `selections`, `permits`, `rough-in`, `hero-home-exterior`, `hero-great-room`, the nine `svc-*` images used in each service page's "What's Included" section, the eight `g-*` gallery-page photos, and `cta-home` (background of the homepage "Not Sure Where to Start?" card).
+`house-dusk`, `kitchen-pendants`, `pool-house`, `farmhouse-back`, `farmhouse-front`, `kitchen-galley`, `dining-blue`, `kitchen-marble`, `bathroom`, `adu`, `site-visit`, `selections`, `permits`, `rough-in`, `hero-modern-house`, `hero-home-exterior`, `hero-great-room`, the nine `svc-*` images used in each service page's "What's Included" section, the eight `g-*` gallery-page photos, and `cta-home` (background of the homepage "Not Sure Where to Start?" card).
 
 ## Speed and SEO
 
