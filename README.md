@@ -16,6 +16,10 @@ Gallery page: `site/gallery.html` (generated; edit the `GALLERY` list in `tools/
 
 Business content and source notes: `content/business-info.md`.
 
+## Coming soon (temporary)
+
+While `site/_redirects` exists, Netlify shows `site/coming-soon.html` on every URL. To launch the full site, delete `site/_redirects` (and `site/coming-soon.html` if you like) and push.
+
 ## Photos
 
 All photos are WebP in `site/assets/img/`: `name.webp` (full size) plus `name-768.webp` for phones. To add or replace one, drop a JPG or PNG with the target name into that folder and run:
